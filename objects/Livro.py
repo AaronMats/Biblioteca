@@ -1,33 +1,30 @@
+#import json
+
 class Livro:
-    def __init__(self, titulo, autor, genero, descricao, edicao):
+    def __init__(self, titulo, autor, genero, descricao, edicao, quantidade):
         self.__titulo = titulo
         self.__autor = autor
         self.__genero = genero
         self.__descricao = descricao
-
-
-
-
-
-
-
-        
         self.__edicao = edicao
-        self.__status_aluguel = False
+        self.__quantidade = int(quantidade)
 
-    def alugar(self):
-        if self.__status_aluguel:
-            return print("Livro alugado!!!!")
+    def alugar(self, quantidade_alugar):
+        if quantidade_alugar > 0 and quantidade_alugar <= self.__quantidade:
+            alugados = self.__quantidade - quantidade_alugar
+            self.__quantidade = alugados
+            print("Livro(s) alugados com sucesso")
         else:
-            self.__status_aluguel = True
-            return print("Alugado com sucesso!!!!")
+            print("Valor inválido")
         
-    def devolver(self):
-        if self.__status_aluguel:
-            self.__status_aluguel = False
+        
+    def devolver(self, quantidade_devolver):
+        if quantidade_devolver > 0:
+            alugados = quantidade_devolver + self.__quantidade
+            self.__quantidade = alugados
             return print("Devolvido!!")
         else:
-            return print("Comando inválido")
+            return print("Valor inválido")
         
     def set_titulo(self, novo_nome):
         self.__titulo = novo_nome
@@ -44,7 +41,25 @@ class Livro:
     def set_descricao(self, nova_descricao):
         self.__descricao = nova_descricao
 
-        
+    def set_quantidade(self, quantidade):
+        self.__quantidade = int(quantidade)
+
+    def livro_dic(self):
+        livro = {"Nome": self.__titulo,
+                "Autor(a)": self.__autor,
+                "Genero": self.__genero,
+                "Edição": self.__edicao,
+                "Quantidade": self.__quantidade,
+                "Descrição": self.__descricao
+                }
+        return livro
+
+    def get_quantidade(self):
+        return self.__quantidade
+    
+    def get_titulo(self):
+        return self.__titulo
+
     def detalhes(self):
-        print(f'Título: {self.__titulo}\nAutor: {self.__autor}\nGenero: {self.__genero}\nEdição: {self.__edicao}ª\nDescrição: {self.__descricao}')
+        print(f'Título: {self.__titulo}\nAutor: {self.__autor}\nGenero: {self.__genero}\nEdição: {self.__edicao}ª\nQuantidade: {self.__quantidade}\nDescrição: {self.__descricao}')
   

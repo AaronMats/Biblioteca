@@ -1,11 +1,11 @@
 import customtkinter as ctk
-
+from ..objects.Livro import Livro
 class Screen_login():
     ctk.set_appearance_mode('dark')
     ctk.set_default_color_theme('blue')
     screen_login = ctk.CTk()
     screen_login.title('BiblioTec')
-    #screen_login.geometry('500x600')
+    screen_login.geometry('500x600')
 
     frame_login = ctk.CTkFrame(screen_login)
     texto_login = ctk.CTkLabel(frame_login, text="Login")
