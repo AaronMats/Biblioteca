@@ -1,7 +1,6 @@
 import customtkinter as ctk
 
 class Screen_login():
-
     ctk.set_appearance_mode('dark')
     ctk.set_default_color_theme('blue')
     screen_login = ctk.CTk()

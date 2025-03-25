@@ -4,6 +4,14 @@ class Livro:
         self.__autor = autor
         self.__genero = genero
         self.__descricao = descricao
+
+
+
+
+
+
+
+        
         self.__edicao = edicao
         self.__status_aluguel = False
 
