@@ -29,15 +29,15 @@ class Usuario(Pessoa):
         else:
             return print("Valor inválido")
         
-    def devolver(self, livro, quantidade):
+    def devolve(self, livro, quant):
         if livro in self.__alugados:
             ind = self.__alugados.index(livro)
             alugados = self.__quantidade[ind]
             livro_alugado = self.__quantidade[ind]
-            if quantidade <= alugados and quantidade > 0:
+            if quant <= alugados and quant > 0:
                 del self.__alugados[ind]
                 del self.__quantidade[ind]
-                livro_alugado.devolver(quantidade)
+                livro_alugado.devolver(quant)
                 return print("Devolvido com sucesso!")
             else:
                 return print("Valor inválido")
@@ -56,5 +56,5 @@ usuario1 = Usuario("fulano", "exemplo@email.com", "123456789000", "123456789")
 livro1.detalhes()
 usuario1.alugando(livro1, 4)
 livro1.detalhes()
-usuario1.devolver(livro1, 4)
+usuario1.devolve(livro1, 4)
 livro1.detalhes()
