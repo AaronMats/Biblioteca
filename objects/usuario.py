@@ -29,16 +29,32 @@ class Usuario(Pessoa):
         else:
             return print("Valor inválido")
         
-        
-    def devolvendo(self, ind):
-        lista = len(self.__alugados)
-        if lista < ind:
-            del self.__alugados[ind]
-            del self.__quantidade[ind]
-            return print("Devolvido com sucesso")
+    def devolver(self, livro, quantidade):
+        if livro in self.__alugados:
+            ind = self.__alugados.index(livro)
+            alugados = self.__quantidade[ind]
+            livro_alugado = self.__quantidade[ind]
+            if quantidade <= alugados and quantidade > 0:
+                del self.__alugados[ind]
+                del self.__quantidade[ind]
+                livro_alugado.devolver(quantidade)
+                return print("Devolvido com sucesso!")
+            else:
+                return print("Valor inválido")
         else:
-            return print("Operação inválida")
+            return print("Livro não encontrado")
 
 
 
-    
+
+livro1 = Livro("livro1", "Eu", "Ação", "Um livro de ação", "4", 20)
+livro2 = Livro("livro2", "Tu", "Aventura", "Um livro de aventura", "4", 2)
+usuario1 = Usuario("fulano", "exemplo@email.com", "123456789000", "123456789")
+
+
+
+livro1.detalhes()
+usuario1.alugando(livro1, 4)
+livro1.detalhes()
+usuario1.devolver(livro1, 4)
+livro1.detalhes()

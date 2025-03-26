@@ -13,7 +13,7 @@ class Livro:
         if quantidade_alugar > 0 and quantidade_alugar <= self.__quantidade:
             alugados = self.__quantidade - quantidade_alugar
             self.__quantidade = alugados
-            print("Livro(s) alugados com sucesso")
+            #print("Livro(s) alugados com sucesso")
         else:
             print("Valor inválido")
         
