@@ -1,5 +1,5 @@
-from Pessoa import Pessoa
-from Livro import Livro
+from .Pessoa import Pessoa
+from .Livro import Livro
 class Usuario(Pessoa):
     def __init__(self, nome, email, cpf, telefone):
         super().__init__(nome, email, cpf)
@@ -37,6 +37,7 @@ class Usuario(Pessoa):
             if quant <= alugados and quant > 0:
                 del self.__alugados[ind]
                 del self.__quantidade[ind]
+                livro.devolver(quantidade)
                 livro_alugado.devolver(quant)
                 return print("Devolvido com sucesso!")
             else:
