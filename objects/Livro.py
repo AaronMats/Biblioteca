@@ -62,4 +62,4 @@ class Livro:
 
     def detalhes(self):
         print(f'Título: {self.__titulo}\nAutor: {self.__autor}\nGenero: {self.__genero}\nEdição: {self.__edicao}ª\nQuantidade: {self.__quantidade}\nDescrição: {self.__descricao}')
-  
+        

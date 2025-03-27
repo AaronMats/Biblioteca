@@ -32,15 +32,19 @@ class Usuario(Pessoa):
     def devolve(self, livro, quant):
         if livro in self.__alugados:
             ind = self.__alugados.index(livro)
-            alugados = self.__quantidade[ind]
-            livro_alugado = self.__quantidade[ind]
-            if quant <= alugados and quant > 0:
+            quant_alugado = self.__quantidade[ind]
+            if quant == quant_alugado:
                 del self.__alugados[ind]
                 del self.__quantidade[ind]
-                livro_alugado.devolver(quant)
-                return print("Devolvido com sucesso!")
+                livro.devolver(quant)
+                print("Todos os livros fram devolvidos!")
+            elif quant <= quant_alugado and quant > 0:
+                sobra = quant_alugado - quant
+                self.__alugados.insert(ind, sobra)
+                livro.devolver(quant)
+                print(f"foram devolvidos {quant} livros, ainda faltam {sobra} para devolver")
             else:
-                return print("Valor inválido")
+                print("Valor inválido")
         else:
             return print("Livro não encontrado")
 
