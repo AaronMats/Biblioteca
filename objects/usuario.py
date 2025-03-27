@@ -37,7 +37,6 @@ class Usuario(Pessoa):
             if quant <= alugados and quant > 0:
                 del self.__alugados[ind]
                 del self.__quantidade[ind]
-                livro.devolver(quantidade)
                 livro_alugado.devolver(quant)
                 return print("Devolvido com sucesso!")
             else:
