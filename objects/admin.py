@@ -1,4 +1,4 @@
-from Pessoa import Pessoa
+from .Pessoa import Pessoa
 
 class Admin(Pessoa):
     def __init__(self, nome, email, cpf, senha):
