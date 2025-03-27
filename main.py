@@ -2,6 +2,7 @@ from objects.Usuario import Usuario
 from objects.Livro import Livro
 from objects.Pessoa import Pessoa
 from objects.Admin import Admin
+from tools.Registros import Registros
 
 # livro1 = Livro("livro1", "Eu", "Ação", "Um livro de ação", "4", 20)
 # livro2 = Livro("livro2", "Tu", "Aventura", "Um livro de aventura", "4", 2)
@@ -12,12 +13,12 @@ from objects.Admin import Admin
 # livro1.detalhes()
 # usuario1.alugando(livro1, 4)
 # livro1.detalhes()
-# usuario1.devolve(livro1, 1)
+# usuario1.devolve(livro1, 4)
 # livro1.detalhes()
 
 admin_1 = Admin("Fulano", "asdfghjkl", "12345678900", "1234")
 
-novo = admin_1.admin_dic()
+Registros.cadastro_admin(admin_1)
 
-admin_1.cadastro_admin(novo)
+
 
