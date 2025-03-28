@@ -1,6 +1,8 @@
 from .Pessoa import Pessoa
 import json
 import os
+
+
 class Admin(Pessoa):
     def __init__(self, nome, email, cpf, senha):
         super().__init__(nome, email, cpf)
@@ -20,17 +22,17 @@ class Admin(Pessoa):
 
     
     def admin_dic(self):
-        admin = {
-            "Nome": self.__nome,
-            "CPF": self.__cpf,
-            "Email": self.__email,
+        admin_dicionario = {
+            "Nome": super().get_nome(),
+            "CPF": super().get_cpf(),
+            "Email": super().get_email(),
             "Senha": self.__senha
         }
-        
-        return admin
+        admin_json = json.dumps(admin_dicionario)
+        return admin_json
     
-    def cadastro_admin(self, adm_registrar):
-        #adm_registrar = adm_registrar.admin_dic()
+    def cadastro_admin(self, admin_json):
+
         dados_json = os.path.join(os.path.dirname(__file__), 'data', 'admins.json')
 
         try:
@@ -45,7 +47,7 @@ class Admin(Pessoa):
         except Exception as e:
             print(f"Error: {e}")
 
-        dados_json_exist.append(adm_registrar)
+        dados_json_exist.append(admin_json)
 
         try:
             with open(dados_json, "w", encoding="utf-8") as arquivo:

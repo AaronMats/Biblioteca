@@ -5,8 +5,11 @@ import json
 import os
 
 class Registros:
-    def cadastro_admin(self, adm_registrar):
-        adm_registrar = adm_registrar.admin_dic()
+    def cadastro_admin(self, nome, email, cpf, senha):
+        adm_registrar = Admin(nome, email, cpf, senha)
+
+        adm_novo = adm_registrar.admin_dic
+
         dados_json = os.path.join(os.path.dirname(__file__), 'data', 'admins.json')
 
         try:
@@ -21,7 +24,7 @@ class Registros:
         except Exception as e:
             print(f"Error: {e}")
 
-        dados_json_exist.append(adm_registrar)
+        dados_json_exist.append(adm_novo)
 
         try:
             with open(dados_json, "w", encoding="utf-8") as arquivo:
