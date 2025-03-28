@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from ..objects.Livro import Livro
+#from ..objects.Livro import Livro
 class Screen_login():
     ctk.set_appearance_mode('dark')
     ctk.set_default_color_theme('blue')

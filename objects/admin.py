@@ -26,6 +26,7 @@ class Admin(Pessoa):
             "Email": self.__email,
             "Senha": self.__senha
         }
+        
         return admin
     
     def cadastro_admin(self, adm_registrar):
