@@ -48,17 +48,13 @@ class Usuario(Pessoa):
         else:
             return print("Livro não encontrado")
 
-
-
-
-# livro1 = Livro("livro1", "Eu", "Ação", "Um livro de ação", "4", 20)
-# livro2 = Livro("livro2", "Tu", "Aventura", "Um livro de aventura", "4", 2)
-# usuario1 = Usuario("fulano", "exemplo@email.com", "123456789000", "123456789")
-
-
-
-# livro1.detalhes()
-# usuario1.alugando(livro1, 4)
-# livro1.detalhes()
-# usuario1.devolve(livro1, 4)
-# livro1.detalhes()
+    def usuario_dic(self):
+        usuario_dicionario = {
+             "Nome": super().get_nome(),
+            "CPF": super().get_cpf(),
+            "Email": super().get_email(),
+            "Telefone": self.__telefone,
+            "livros alugados": self.__alugados,
+            "quantidade Alugada": self.__quantidade
+        }
+        return usuario_dicionario

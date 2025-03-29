@@ -1,3 +1,10 @@
 [
-    
+    {
+        "Nome": "Ciclano",
+        "CPF": "12345678999",
+        "Email": "ciclano@site.com",
+        "Telefone": "2345-6789",
+        "livros alugados": [],
+        "quantidade Alugada": []
+    }
 ]
