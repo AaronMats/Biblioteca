@@ -1,3 +1,10 @@
 [
-    
+    {
+        "Nome": "livro1",
+        "Autor(a)": "Eu",
+        "Genero": "A\u00e7\u00e3o",
+        "Edi\u00e7\u00e3o": "4",
+        "Quantidade": 20,
+        "Descri\u00e7\u00e3o": "Um livro de a\u00e7\u00e3o"
+    }
 ]

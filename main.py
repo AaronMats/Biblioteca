@@ -11,7 +11,7 @@ livro1 = Livro("livro1", "Eu", "Ação", "Um livro de ação", "4", 20)
 
 
 
-Registros.cadastro_admin("nome", "email", "CPF", "senha")
+Registros.cadas_livro("livro1", "Eu", "Ação", "Um livro de ação", "4", 20)
 
 
 
