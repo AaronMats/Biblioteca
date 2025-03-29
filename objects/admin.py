@@ -28,8 +28,7 @@ class Admin(Pessoa):
             "Email": super().get_email(),
             "Senha": self.__senha
         }
-        admin_json = json.dumps(admin_dicionario)
-        return admin_json
+        return admin_dicionario
     
     def cadastro_admin(self, admin_json):
 
