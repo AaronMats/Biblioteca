@@ -1,4 +1,5 @@
 import customtkinter as ctk
+# import tools.Login
 #from ..objects.Livro import Livro
 class Screen_login():
     ctk.set_appearance_mode('dark')
@@ -14,7 +15,7 @@ class Screen_login():
     caixa_login_email.pack(padx=10, pady= 2)
     caixa_login_senha = ctk.CTkEntry(frame_login, placeholder_text="Digite sua senha", show="*")
     caixa_login_senha.pack(padx=10, pady= 2)
-    botao_login_entrar = ctk.CTkButton(frame_login, text= "Entar")
+    botao_login_entrar = ctk.CTkButton(frame_login, text= "Entar", command= Login_v.login_autent())
     botao_login_entrar.pack(padx=10, pady=2)
 
 

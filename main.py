@@ -3,9 +3,12 @@ from objects.Livro import Livro
 from objects.Pessoa import Pessoa
 from objects.Admin import Admin
 from tools.Registros import Registros
+from screen.Login import Screen_login
+from tools.Login import Login_v
 
 
-# Registros.cadastro_usuario("Ciclano", "ciclano@site.com", "12345678999", "2345-6789")
-Registros.cadastro_admin("ciclano", "ciclano@site.com", "12345678908", "12345678910")
+Screen_login()
+
+
 
 
