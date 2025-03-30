@@ -3,13 +3,13 @@ import hashlib
 import os
 import customtkinter as ctk
 from tkinter import messagebox
-# import screen.Login
+#import screen.Login
 
 
 class Login_v():
-    def login_autent():
-        email = caixa_login_email.get()
-        senha = caixa_login_senha.get()
+    def login_autent(email, senha):
+        # email = caixa_login_email.get()
+        # senha = caixa_login_senha.get()
         senha_segura = hashlib.sha256(senha.encode()).hexdigest()
         dados = os.path.join(os.path.dirname(__file__), "../data", "admins.json")
 
