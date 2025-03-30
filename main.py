@@ -5,7 +5,7 @@ from objects.Admin import Admin
 from tools.Registros import Registros
 
 
-Registros.cadastro_usuario("Ciclano", "ciclano@site.com", "12345678999", "2345-6789")
-
+# Registros.cadastro_usuario("Ciclano", "ciclano@site.com", "12345678999", "2345-6789")
+Registros.cadastro_admin("ciclano", "ciclano@site.com", "12345678908", "12345678910")
 
 

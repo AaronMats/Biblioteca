@@ -4,5 +4,11 @@
         "CPF": "CPF",
         "Email": "email",
         "Senha": "senha"
+    },
+    {
+        "Nome": "ciclano",
+        "CPF": "12345678908",
+        "Email": "ciclano@site.com",
+        "Senha": "63640264849a87c90356129d99ea165e37aa5fabc1fea46906df1a7ca50db492"
     }
 ]

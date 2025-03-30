@@ -5,10 +5,13 @@ from objects.Pessoa import Pessoa
 from objects.Usuario import Usuario
 import json
 import os
+import hashlib
 
 class Registros:
     def cadastro_admin(nome, email, cpf, senha):
-        adm_registrar = Admin(nome, email, cpf, senha)
+        senha_segura =  hashlib.sha256(senha.encode()).hexdigest()
+
+        adm_registrar = Admin(nome, email, cpf, senha_segura)
 
         adm_novo = adm_registrar.admin_dic()
 
