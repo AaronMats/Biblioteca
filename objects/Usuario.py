@@ -1,11 +1,11 @@
 from .Pessoa import Pessoa
 from .Livro import Livro
 class Usuario(Pessoa):
-    def __init__(self, nome, email, cpf, telefone):
+    def __init__(self, nome, email, cpf, telefone, livros, quantidade):
         super().__init__(nome, email, cpf)
         self.__telefone = telefone
-        self.__alugados = list()
-        self.__quantidade = list()
+        self.__alugados = livros
+        self.__quantidade = quantidade
 
     def set_nome(self, nome):
         self.__nome = nome

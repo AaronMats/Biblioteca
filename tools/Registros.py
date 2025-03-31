@@ -68,7 +68,7 @@ class Registros:
             print(f"Error: {e}")
 
     def cadastro_usuario(nome, email, cpf, telefone):
-        usuario = Usuario(nome, email, cpf, telefone)
+        usuario = Usuario(nome, email, cpf, telefone,[],[])
 
         usuario_novo = usuario.usuario_dic()
         usuario_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
@@ -90,6 +90,6 @@ class Registros:
         try:
             with open(usuario_json, "w", encoding="utf-8") as arquivo:
                 json.dump(usuarios_exist, arquivo, indent=4)
-            print("Usuario cadastrado com sucesso")
+            return True
         except Exception as e:
             print(f"Error: {e}")

@@ -3,8 +3,9 @@ import customtkinter as ctk
 import hashlib
 import json
 import os
+from tkinter import messagebox
 #from ..objects.Livro import Livro
-#class Screen_login():
+from tools.Registros import Registros
 def mostrar_tela_principal():
     frame_login.pack_forget()
     frame_Ucadastro.pack_forget()
@@ -33,15 +34,25 @@ def login_autent():
 
         for admin in admins:
             if admin["Email"] == email and admin["Senha"] == senha_segura:
-                print("bem-vindo")
                 frame_login.pack_forget()
                 frame_principal.pack(fill='both', expand=True)
                 return 
-        print("Email e/ou senha invalidos(s)")
+        messagebox.showerror("ERROR", "Email e/ou senha inválido(s)")
     except FileNotFoundError:
-        print("arquivo não encontrado")
+        messagebox.showerror("ERROR", "Arquivo não encontrado")
+        
 
+def registrar():
+    nome = caixa_Ucadastro_nome.get()
+    email = caixa_Ucadastro_email.get()
+    cpf = caixa_Ucadastro_cpf.get()
+    telefone = caixa_Ucadastro_telefone.get()
 
+    cadastroU = Registros.cadastro_usuario(nome, email, cpf, telefone)
+    if cadastroU:
+        messagebox.showinfo("SUCESSO", "Usuário cadastrado com sucesso!!")
+    else:
+        messagebox.showerror("ERROR:", "Erro ao cadastrar")
 ctk.set_appearance_mode('dark')
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
@@ -91,7 +102,7 @@ texto_Ucadastro_telefone.pack(padx=10, pady=2)
 caixa_Ucadastro_telefone = ctk.CTkEntry(frame_Ucadastro, placeholder_text="(00)12345-6789", width=150)
 caixa_Ucadastro_telefone.pack(padx=10, pady=2)
 
-botao_Ucadastro_registrar = ctk.CTkButton(frame_Ucadastro, text="Cadastrar", font=("Roboto", 14))
+botao_Ucadastro_registrar = ctk.CTkButton(frame_Ucadastro, text="Cadastrar", font=("Roboto", 14), command=registrar)
 botao_Ucadastro_registrar.pack(padx=10, pady=10)
 
 botao_Ucadastro_voltar = ctk.CTkButton(frame_Ucadastro, text="Voltar",font=("Roboto", 14), command=mostrar_tela_principal)
