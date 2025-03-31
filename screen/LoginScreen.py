@@ -7,6 +7,7 @@ import os
 #class Screen_login():
 def mostrar_tela_principal():
     frame_login.pack_forget()
+    frame_Ucadastro.pack_forget()
     frame_principal.pack(fill='both', expand=True)
 
 def mostrar_tela_login():
@@ -16,6 +17,8 @@ def mostrar_tela_login():
 def mostar_tela_Ucadastro():
     frame_principal.pack_forget()
     frame_Ucadastro.pack(fill='both', expand=True)
+
+
 
 
 def login_autent():
@@ -91,6 +94,8 @@ caixa_Ucadastro_telefone.pack(padx=10, pady=2)
 botao_Ucadastro_registrar = ctk.CTkButton(frame_Ucadastro, text="Cadastrar", font=("Roboto", 14))
 botao_Ucadastro_registrar.pack(padx=10, pady=10)
 
+botao_Ucadastro_voltar = ctk.CTkButton(frame_Ucadastro, text="Voltar",font=("Roboto", 14), command=mostrar_tela_principal)
+botao_Ucadastro_voltar.pack(padx=10, pady=10)
 
 
 mostrar_tela_login()
