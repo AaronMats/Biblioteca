@@ -87,7 +87,7 @@ texto_Ucadastro = ctk.CTkLabel(frame_Ucadastro, text="Cadastrar novo usuário:",
 texto_Ucadastro.pack(padx=10, pady=10)
 texto_Ucadastro_nome = ctk.CTkLabel(frame_Ucadastro, text="Nome: ", font=("Roboto", 14))
 texto_Ucadastro_nome.pack(padx=10, pady=2)
-caixa_Ucadastro_nome = ctk.CTkEntry(frame_Ucadastro, placeholder_text="Nome Usuario", width=300)
+caixa_Ucadastro_nome = ctk.CTkEntry(frame_Ucadastro, placeholder_text="Nome do Usuario", width=300)
 caixa_Ucadastro_nome.pack(padx=10, pady=2)
 texto_Ucadastro_cpf = ctk.CTkLabel(frame_Ucadastro, text= "CPF: ", font=("Roboto",14))
 texto_Ucadastro_cpf.pack(padx=10, pady=2)
