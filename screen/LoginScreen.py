@@ -67,11 +67,11 @@ caixa_login_email.pack(padx=10, pady= 2)
 caixa_login_senha = ctk.CTkEntry(frame_login, placeholder_text="Digite sua senha", show="*", font= ("Roboto",17), width=250)
 caixa_login_senha["width"] = 50
 caixa_login_senha.pack(padx=10, pady= 2)
-botao_login_entrar = ctk.CTkButton(frame_login, text= "Entar", command= login_autent, font= ("Roboto",17))
+botao_login_entrar = ctk.CTkButton(frame_login, text= "Entrar", command= login_autent, font= ("Roboto",17))
 botao_login_entrar.pack(padx=10, pady=2)
 
 frame_principal = ctk.CTkFrame(screen)
-texto_apresentacao = ctk.CTkLabel(frame_principal, text= "Tela Pincipal:", font= ("Roboto",14))
+texto_apresentacao = ctk.CTkLabel(frame_principal, text= "Bem vindo a Bibliotec", font= ("Candara Light Italic",24))
 texto_apresentacao.grid(row=0, column=0, padx= 10, pady=10)
 botao_principal_sair= ctk.CTkButton(frame_principal, text= "Sair", command= mostrar_tela_login, font= ("Roboto",14))
 botao_principal_sair.grid(row=0, column=2, padx=10, pady=10)
