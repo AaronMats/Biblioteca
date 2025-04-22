@@ -4,7 +4,7 @@ from ..objects.Usuario import Usuario
 from ..objects.Livro import Livro
 
 class Alugar:
-    def alugar(usuario, livro, quantidade):
+    def alugar(usuario, nome_livro, quantidade_livro):
         dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
 
         dados_livros_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
