@@ -53,7 +53,7 @@ def registrar():
         messagebox.showinfo("SUCESSO", "Usuário cadastrado com sucesso!!")
     else:
         messagebox.showerror("ERROR:", "Erro ao cadastrar")
-ctk.set_appearance_mode('dark')
+ctk.set_appearance_mode('system')
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
 screen.title('BiblioTec')
