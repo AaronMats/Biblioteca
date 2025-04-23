@@ -25,9 +25,9 @@ class Usuario(Pessoa):
             livro.alugar(quantidade)
             self.__alugados.append(livro)
             self.__quantidade.append(quantidade)
-            return print(f"O livro {livro.get_titulo()} foi alugado com sucesso!!")
+            return f"O livro {livro.get_titulo()} foi alugado com sucesso!!"
         else:
-            return print("Valor inválido")
+            return "Valor inválido"
         
     def devolve(self, livro, quant):
         if livro in self.__alugados:
@@ -37,16 +37,16 @@ class Usuario(Pessoa):
                 del self.__alugados[ind]
                 del self.__quantidade[ind]
                 livro.devolver(quant)
-                print("Todos os livros fram devolvidos!")
+                return "Todos os livros foram devolvidos!"
             elif quant <= quant_alugado and quant > 0:
                 sobra = quant_alugado - quant
                 self.__alugados.insert(ind, sobra)
                 livro.devolver(quant)
-                print(f"foram devolvidos {quant} livros, ainda faltam {sobra} para devolver")
+                return f"foram devolvidos {quant} livros, ainda faltam {sobra} para devolver"
             else:
-                print("Valor inválido")
+                return "Valor inválido"
         else:
-            return print("Livro não encontrado")
+            return "Livro não encontrado"
 
     def usuario_dic(self):
         usuario_dicionario = {
