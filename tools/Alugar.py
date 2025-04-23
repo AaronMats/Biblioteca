@@ -21,4 +21,10 @@ class Alugar:
         except Exception as e:
             print(f"ERROR: {e}")
 
-        
+        for user in dados_users:
+            if usuario == user["Nome"]:
+                usuario_aluga = Usuario(user["Nome"], user["Email"], user["cpf"], user["Telefone"], user["Livros alugados"], user["Quantidade Alugada"])
+                for user in dados_users:
+                    dados_atualizados_users = [
+                        if usuario_aluga.getnome() != user["nome"] 
+                    ]
