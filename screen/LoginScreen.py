@@ -1,10 +1,8 @@
 import customtkinter as ctk
-# from tools.Login import Login_v
 import hashlib
 import json
 import os
 from tkinter import messagebox
-#from ..objects.Livro import Livro
 from tools.Registros import Registros
 def mostrar_tela_principal():
     frame_login.pack_forget()
