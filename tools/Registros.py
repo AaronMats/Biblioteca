@@ -67,21 +67,21 @@ class Registros:
             print(f"Error: {e}")
 
     def cadastro_usuario(nome, email, cpf, telefone):
-        try:
-            if not nome.strip():
+        try: #verificando cada etapa do cadastro
+            if not nome.strip(): #Verifica se o nome esta vazio
                 raise ValueError('Nome nao pode ser vazio.')
-            if not all(parte.isalpha() for parte in nome.split()):
+            if not all(parte.isalpha() for parte in nome.split()): #verifica se o usuario colocou numero no nome
                 raise ValueError('Nome deve conter apenas letras e espaços.')
-            if "@" not in email or "." not in email:
+            if "@" not in email or "." not in email: #Verifica se o usuario inseriu @ e . no email
                 raise ValueError('Email invalido.')
-            if not cpf.isdigit() or len(cpf) != 11:
+            if not cpf.isdigit() or len(cpf) != 11: #Verifica se o cpf tem somente numeros e 11 caracteres
                 raise ValueError('CPF deve conter 11 numeros')
-            if not telefone.isdigit() or len(cpf) < 11:
+            if not telefone.isdigit() or len(cpf) < 11: #verifica se o telefone tem 11 digitos
                 raise ValueError('Telefone invalido')
             usuario = Usuario(nome, email, cpf, telefone,[],[])
             usuario_novo = usuario.usuario_dic()
             usuario_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
-        except ValueError as error:
+        except ValueError as error: #mostra onde o usuario errou
             print(f'Erro de cadastro do usuario: {error}')
         
         try:
