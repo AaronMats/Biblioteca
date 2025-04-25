@@ -68,12 +68,23 @@ class Registros:
             print(f"Error: {e}")
 
     def cadastro_usuario(nome, email, cpf, telefone):
+        try:
+            if not nome.strip():
+                raise ValueError('Nome nao pode ser vazio.')
+            if not all(parte.isalpha() for parte in nome.split()):
+                raise ValueError('Nome deve conter apenas letras e espaços.')
+            if "@" not in email or "." not in email:
+                raise ValueError('Email invalido.')
+            if not cpf.isdigit() or len(cpf) != 11:
+                raise ValueError('CPF deve conter 11 numeros')
+            if not telefone.isdigit() or len(cpf) < 11:
+                raise ValueError('Telefone invalido')
+            usuario = Usuario(nome, email, cpf, telefone,[],[])
+            usuario_novo = usuario.usuario_dic()
+            usuario_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
+        except ValueError as error:
+            print(f'Erro de cadastro do usuario: {error}')
         
-        usuario = Usuario(nome, email, cpf, telefone,[],[])
-
-        usuario_novo = usuario.usuario_dic()
-        usuario_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
-
         try:
             if os.path.exists(usuario_json) and os.path.getsize(usuario_json) > 0:
                 with open(usuario_json, "r", encoding="utf-8") as arquivo:

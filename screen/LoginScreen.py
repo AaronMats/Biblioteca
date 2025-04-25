@@ -47,13 +47,12 @@ def registrar():
     email = caixa_Ucadastro_email.get()
     cpf = caixa_Ucadastro_cpf.get()
     telefone = caixa_Ucadastro_telefone.get()
-
     cadastroU = Registros.cadastro_usuario(nome, email, cpf, telefone)
     if cadastroU:
         messagebox.showinfo("SUCESSO", "Usuário cadastrado com sucesso!!")
     else:
-        messagebox.showerror("ERROR:", "Erro ao cadastrar")
-ctk.set_appearance_mode('system')
+        messagebox.showinfo('ERRO','Erro no cadastro do usuario.')
+ctk.set_appearance_mode('system') 
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
 screen.title('BiblioTec')
