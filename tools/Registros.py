@@ -1,4 +1,3 @@
-# from objects.Usuario import Usuario 
 from objects.Admin import Admin
 from objects.Livro import Livro
 from objects.Pessoa import Pessoa

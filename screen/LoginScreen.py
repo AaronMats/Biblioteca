@@ -51,7 +51,7 @@ def registrar():
     if cadastroU:
         messagebox.showinfo("SUCESSO", "Usuário cadastrado com sucesso!!")
     else:
-        messagebox.showinfo('ERRO','Erro no cadastro do usuario.')
+        messagebox.showerror('ERRO','Erro no cadastro do usuario.')
 ctk.set_appearance_mode('system') 
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()

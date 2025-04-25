@@ -50,7 +50,7 @@ class Usuario(Pessoa):
 
     def usuario_dic(self):
         usuario_dicionario = {
-             "Nome": super().get_nome(),
+            "Nome": super().get_nome(),
             "CPF": super().get_cpf(),
             "Email": super().get_email(),
             "Telefone": self.__telefone,

@@ -1,5 +1,3 @@
-#import json
-
 class Livro:
     def __init__(self, titulo, autor, genero, descricao, edicao, quantidade):
         self.__titulo = titulo
