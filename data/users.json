@@ -38,5 +38,13 @@
         "Telefone": "969855",
         "livros alugados": [],
         "quantidade Alugada": []
+    },
+    {
+        "Nome": " ",
+        "CPF": " ",
+        "Email": " ",
+        "Telefone": " ",
+        "livros alugados": [],
+        "quantidade Alugada": []
     }
 ]

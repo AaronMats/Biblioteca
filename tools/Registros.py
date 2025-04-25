@@ -68,6 +68,7 @@ class Registros:
             print(f"Error: {e}")
 
     def cadastro_usuario(nome, email, cpf, telefone):
+        
         usuario = Usuario(nome, email, cpf, telefone,[],[])
 
         usuario_novo = usuario.usuario_dic()

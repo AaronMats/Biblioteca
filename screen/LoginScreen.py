@@ -57,7 +57,7 @@ ctk.set_appearance_mode('system')
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
 screen.title('BiblioTec')
-screen.geometry('500x600')
+screen.geometry('800x600')
 
 frame_login = ctk.CTkFrame(screen)
 texto_login = ctk.CTkLabel(frame_login, text="Login",font= ("Roboto",25))
