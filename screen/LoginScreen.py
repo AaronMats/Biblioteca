@@ -167,6 +167,8 @@ botao_Lcadastro_voltar.pack(padx=10, pady=10)
 
 mostrar_tela_login()
 
+screen.bind('<Return>', lambda event: login_autent())#so funciona no login (NAO USE FORA DO LOGIN!!)
+
 screen.bind('<Escape>', sair_tela_cheia)
 
 screen.mainloop()
