@@ -54,9 +54,14 @@ ctk.set_appearance_mode('system')
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
 screen.title('BiblioTec')
+screen.attributes("-fullscreen", True) #ideia para tela cheia
 screen.geometry('800x600')
-
+def sair_tela_cheia(event=None):
+    screen.attributes("-fullscreen", False)#ideia para tela cheia
+#screen.state("zoomed") ideia para tela cheia mas com os botoes de minimizacao, janela e
 frame_login = ctk.CTkFrame(screen)
+texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
+texto_login.pack(padx=10, pady=10)
 texto_login = ctk.CTkLabel(frame_login, text="Login",font= ("Roboto",25))
 texto_login.pack(padx=10, pady=10)
 caixa_login_email = ctk.CTkEntry(frame_login, placeholder_text="Digite seu email", font= ("Roboto",17), width=250)
@@ -107,6 +112,8 @@ botao_Ucadastro_voltar.pack(padx=10, pady=10)
 
 
 mostrar_tela_login()
+
+screen.bind('<Escape>', sair_tela_cheia)
 
 screen.mainloop()
 
