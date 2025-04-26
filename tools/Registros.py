@@ -24,10 +24,9 @@ class Registros:
             else:
                 dados_json_exist = []
         except json.JSONDecodeError:
-            print("Arquivo JSON mal formatado. Iniciando com uma lista vazia.")
             dados_json_exist = []
         except Exception as e:
-            print(f"Error: {e}")
+            return False, f"Error: {e}"
             
 
         dados_json_exist.append(adm_novo)
@@ -52,19 +51,18 @@ class Registros:
             else:
                 dados_exist = []
         except json.JSONDecodeError:
-            print("Arquivo JSON mal formatado. Iniciando com uma lista vazia.")
             dados_exist = []
         except Exception as e:
-            print(f"Error: {e}")
+            return False, f"Erro: {e}"
         
         dados_exist.append(livro_novo)
 
         try:
             with open(dados_json, "w", encoding="utf-8") as arquivo:
                 json.dump(dados_exist, arquivo, indent=4)
-            print("Livro registrado com sucesso")
+            return True, "Livro registrado com sucesso"
         except Exception as e:
-            print(f"Error: {e}")
+            return False, "Erro ao cadastrar"
 
     def cadastro_usuario(nome, cpf, email, telefone):
         try: #verificando cada etapa do cadastro do usuario
@@ -86,10 +84,10 @@ class Registros:
             usuario = Usuario(nome, email, cpf, telefone,[],[])
             usuario_novo = usuario.usuario_dic()
             usuario_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
-            return True, "Usuario cadastrado com sucesso!" #retorna que deu certo o cadastro
         
         except ValueError as error: #retorna onde o usuario errou
             return False, str(error)
+        
         try:
             if os.path.exists(usuario_json) and os.path.getsize(usuario_json) > 0:
                 with open(usuario_json, "r", encoding="utf-8") as arquivo:
@@ -97,16 +95,15 @@ class Registros:
             else:
                 usuarios_exist = []
         except json.JSONDecodeError:
-            print("Arquivo JSON mal formatado. Iniciando com uma lista vazia.")
             usuarios_exist = []
         except Exception as e:
-            print(f"Error: {e}")
+            return False, f"ERRO: {e}"
 
         usuarios_exist.append(usuario_novo)
 
         try:
             with open(usuario_json, "w", encoding="utf-8") as arquivo:
                 json.dump(usuarios_exist, arquivo, indent=4)
-            return True
+            return True, "Usuario cadastrado com sucesso!"
         except Exception as e:
-            print(f"Error: {e}")
+            return False, "Erro ao registrar usuário\nErro: {e}"

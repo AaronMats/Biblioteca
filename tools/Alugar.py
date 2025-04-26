@@ -5,8 +5,8 @@ from ..objects.Livro import Livro
 
 class Alugar:
     def alugar(user_selecionado, nome_livro, quantidade_livro):
+        
         dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
-
         dados_livros_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
 
         try:
@@ -37,6 +37,19 @@ class Alugar:
 
         menssagem = usuario_aluga.alugando(livro_aluga, quantidade_livro)
 
+        usuario_att = usuario_aluga.usuario_dic()
+        livro_att = livro_aluga.livro_dic()
+
+        dados_livros_atualizado.append(livro_att)
+        dados_users_atualizado.append(usuario_att)
+
+
+        try:
+            with open(dados_livros_json, 'w', encoding="utf-8") as arquivo:
+                json.dumps(dados_livros_atualizado, arquivo, indent=4)
+        except Exception as e:
+            return "Esso ao salvar as informações"
         
+        return menssagem
 
         
