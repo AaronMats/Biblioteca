@@ -38,7 +38,7 @@ class Usuario(Pessoa):
                 del self.__quantidade[ind]
                 livro.devolver(quant)
                 return "Todos os livros foram devolvidos!"
-            elif quant <= quant_alugado and quant > 0:
+            elif quant < quant_alugado and quant > 0:
                 sobra = quant_alugado - quant
                 self.__alugados.insert(ind, sobra)
                 livro.devolver(quant)
