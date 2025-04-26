@@ -42,14 +42,14 @@ def login_autent():
 
 def registrar():
     nome = caixa_Ucadastro_nome.get()
-    email = caixa_Ucadastro_email.get()
     cpf = caixa_Ucadastro_cpf.get()
+    email = caixa_Ucadastro_email.get()
     telefone = caixa_Ucadastro_telefone.get()
-    cadastroU = Registros.cadastro_usuario(nome, email, cpf, telefone)
-    if cadastroU:
-        messagebox.showinfo("SUCESSO", "Usuário cadastrado com sucesso!!")
+    sucesso, cadastroU = Registros.cadastro_usuario(nome, cpf, email, telefone)
+    if sucesso:
+        messagebox.showinfo("SUCESSO", cadastroU)
     else:
-        messagebox.showerror('ERRO','Erro no cadastro do usuario.')
+        messagebox.showerror("ERRO NO CADASTRO", cadastroU)
 ctk.set_appearance_mode('system') 
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
