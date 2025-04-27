@@ -16,14 +16,6 @@
         "quantidade Alugada": []
     },
     {
-        "Nome": "PauloArthur",
-        "CPF": "123345678900",
-        "Email": "arthur@gmail.com",
-        "Telefone": "36336363636",
-        "livros alugados": [],
-        "quantidade Alugada": []
-    },
-    {
         "Nome": "Enrique Martel",
         "CPF": "004679",
         "Email": "martel@martel.page",
@@ -38,5 +30,17 @@
         "Telefone": "96999123111",
         "livros alugados": [],
         "quantidade Alugada": []
+    },
+    {
+        "Nome": "PauloArthur",
+        "CPF": "123345678900",
+        "Email": "arthur@gmail.com",
+        "Telefone": "36336363636",
+        "livros alugados": [
+            "Duna"
+        ],
+        "quantidade Alugada": [
+            1
+        ]
     }
 ]

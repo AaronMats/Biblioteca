@@ -16,6 +16,7 @@ def mostrar_tela_principal():
     frame_Ucadastro.pack_forget()
     frame_Acadastro.pack_forget()
     frame_Alug_Devol.pack_forget()
+    textbox_principal_Livros.pack_forget()
     frame_principal.pack(fill='both', expand=True)
 
 def mostrar_tela_login():
@@ -166,6 +167,7 @@ botao_principal_adLivro = ctk.CTkButton(frame_principal, text="Cadastrar livro",
 botao_principal_adLivro.grid(row=1, column=1, padx=10, pady=10)
 botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Livro", font= ("Roboto",14), command=mostrar_tela_Alug_Devol)
 botao_principal_AluDev.grid(row=1, column=2, padx=10, pady=10)
+
 
 
 # fram 3: Tela de cadastro de ususários
