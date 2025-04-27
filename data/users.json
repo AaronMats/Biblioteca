@@ -24,18 +24,18 @@
         "quantidade Alugada": []
     },
     {
-        "Nome": "Kleber Kayky Coelho Cruz",
-        "CPF": "009.123.450-00",
-        "Email": "kleber@yahoo.com.br",
-        "Telefone": "96999123111",
-        "livros alugados": [],
-        "quantidade Alugada": []
-    },
-    {
         "Nome": "Enrique Martel",
         "CPF": "004679",
         "Email": "martel@martel.page",
         "Telefone": "969855",
+        "livros alugados": [],
+        "quantidade Alugada": []
+    },
+    {
+        "Nome": "Kleber Kayky Coelho Cruz",
+        "CPF": "009.123.450-00",
+        "Email": "kleber@yahoo.com.br",
+        "Telefone": "96999123111",
         "livros alugados": [],
         "quantidade Alugada": []
     }

@@ -4,7 +4,11 @@ import json
 import os
 from tkinter import messagebox
 from tools.Registros import Registros
+from tools.Alugar import Alugar
+from tools.Devolver import Devolver
 
+def combobox_callback(choice):
+    print("combobox dropdown clicked:", choice)
 
 def mostrar_tela_principal():
     frame_login.pack_forget()
@@ -34,7 +38,8 @@ def mostrar_tela_Lcadastro():
 def mostrar_tela_Alug_Devol():
     frame_principal.pack_forget()
     frame_Alug_Devol.pack(fill='both', expand=True)
-# Carregar arquivo users.json para o combobox
+
+# Carregar arquivo users.json
 def carregar_Users():
     user_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
     try:
@@ -44,6 +49,7 @@ def carregar_Users():
     except Exception as e:
         return False, f'ERROR: {e}'
     
+# Carregar arquivo books.json
 def carregar_Books():
     book_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
     try:
@@ -98,7 +104,30 @@ def registrar_livro():
         messagebox.showinfo("SUCESSO", cadastroL)
     else:
         messagebox.showerror("ERRO NO CADASTRO", cadastroL)
+# Função de alugar livro
+def alugar_livro():
+    usuario = combobox_usuarios.get()
+    livro = combobox_livros.get()
+    quantidade = int(quantidade_livro.get())
 
+    sucessoA, menssage= Alugar.alugar(usuario, livro, quantidade)
+
+    if sucessoA:
+        messagebox.showinfo("SUCESSO", menssage)
+    else:
+        messagebox.showerror("ERRO", menssage)
+# Função de devolver Livro
+def devolver_livro():
+    usuario = combobox_usuarios.get()
+    livro = combobox_livros.get()
+    quantidade = int(quantidade_livro.get())
+
+    sucessoD, menssage = Devolver.devolver(usuario, livro, quantidade)
+
+    if sucessoD:
+        messagebox.showinfo("SUCESSO", menssage)
+    else:
+        messagebox.showerror("ERRO", menssage)
 
 # Set janela
 ctk.set_appearance_mode('system') 
@@ -244,8 +273,10 @@ if sucessoU:
         dropdown_fg_color="#2b2b2b",
         dropdown_hover_color="#3b3b3b",
         button_color="#4b4b4b",
+        state="readonly"
     )
     combobox_usuarios.place(x=20 , y= 100)
+    
 else:
     messagebox.showerror("ERRO", users_box)
 
@@ -262,6 +293,7 @@ if sucessoL:
         dropdown_fg_color="#2b2b2b",
         dropdown_hover_color="#3b3b3b",
         button_color="#4b4b4b",
+        state="readonly"
     )
 else:
     messagebox.showerror("ERRO", books_box)
@@ -270,17 +302,12 @@ texto_quantidade_livro = ctk.CTkLabel(frame_Alug_Devol, text= "Unidades", font= 
 texto_quantidade_livro.place(x=20,y=450)
 quantidade_livro = ctk.CTkEntry(frame_Alug_Devol, placeholder_text= "Unidades", width= 100)
 quantidade_livro.place(x=20 ,y= 470)
-botao_aluagar = ctk.CTkButton(frame_Alug_Devol, text = "Alugar",font=("Roboto", 14))
+botao_aluagar = ctk.CTkButton(frame_Alug_Devol, text = "Alugar",font=("Roboto", 14), command=alugar_livro)
 botao_aluagar.place(x=20 ,y= 510)
-botao_devolver = ctk.CTkButton(frame_Alug_Devol, text = "Devolver",font=("Roboto", 14))
+botao_devolver = ctk.CTkButton(frame_Alug_Devol, text = "Devolver",font=("Roboto", 14), command=devolver_livro)
 botao_devolver.place(x=20 ,y= 550)
 botao_Alug_Devol_Voltar = ctk.CTkButton(frame_Alug_Devol, text="Voltar", command= mostrar_tela_principal)
 botao_Alug_Devol_Voltar.place(x=550,y= 551)
-
-
-
-
-
 
 
 mostrar_tela_login()

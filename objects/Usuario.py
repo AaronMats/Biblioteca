@@ -23,15 +23,15 @@ class Usuario(Pessoa):
         livros = livro.get_quantidade() 
         if quantidade > 0 and quantidade <= livros:
             livro.alugar(quantidade)
-            self.__alugados.append(livro)
+            self.__alugados.append(livro.get_titulo())
             self.__quantidade.append(quantidade)
             return f"O livro {livro.get_titulo()} foi alugado com sucesso!!"
         else:
             return "Valor inválido"
         
     def devolve(self, livro, quant):
-        if livro in self.__alugados:
-            ind = self.__alugados.index(livro)
+        if livro.get_titulo() in self.__alugados:
+            ind = self.__alugados.index(livro.get_titulo())
             quant_alugado = self.__quantidade[ind]
             if quant == quant_alugado:
                 del self.__alugados[ind]
