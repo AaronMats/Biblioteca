@@ -91,6 +91,18 @@ def registrar():
     else:
         messagebox.showerror("ERRO NO CADASTRO", cadastroU)
 
+# Registrar Admin
+def registrar():
+    nome = caixa_Acadastro_nome.get()
+    cpf = caixa_Acadastro_cpf.get()
+    email = caixa_Acadastro_email.get()
+    senha = caixa_Acadastro_senha.get()
+    sucesso, cadastroA = Registros.cadastro_usuario(nome, cpf, email, senha)
+    if sucesso:
+        messagebox.showinfo("SUCESSO", cadastroA)
+    else:
+        messagebox.showerror("ERRO NO CADASTRO", cadastroA)
+
 # Registrar Livro
 def registrar_livro():
     titulo = caixa_Lcadastro_titulo.get()
