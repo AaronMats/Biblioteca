@@ -4,6 +4,8 @@ import json
 import os
 from tkinter import messagebox
 from tools.Registros import Registros
+
+
 def mostrar_tela_principal():
     frame_login.pack_forget()
     frame_Lcadastro.pack_forget()
