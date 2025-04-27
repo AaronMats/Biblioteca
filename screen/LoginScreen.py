@@ -98,7 +98,7 @@ def registrar():
     cpf = caixa_Acadastro_cpf.get()
     email = caixa_Acadastro_email.get()
     senha = caixa_Acadastro_senha.get()
-    sucesso, cadastroA = Registros.cadastro_usuario(nome, cpf, email, senha)
+    sucesso, cadastroA = Registros.cadastro_admin(nome, cpf, email, senha)
     if sucesso:
         messagebox.showinfo("SUCESSO", cadastroA)
     else:
@@ -209,9 +209,9 @@ botao_Acadastro.pack(padx=10, pady=10)
 botao_Ucadastro_voltar = ctk.CTkButton(frame_Ucadastro, text="Voltar",font=("Roboto", 14), command=mostrar_tela_principal)
 botao_Ucadastro_voltar.pack(padx=10, pady=10)
 
-#frame 4: tela de cadastrar adiministrador
+#frame 4: tela de cadastrar administrador
 frame_Acadastro = ctk.CTkFrame(screen)
-texto_Acadastro = ctk.CTkLabel(frame_Acadastro, text="Cadastrar novo Adiministrador:", font=("Roboto", 14))
+texto_Acadastro = ctk.CTkLabel(frame_Acadastro, text="Cadastrar novo Administrador:", font=("Roboto", 14))
 texto_Acadastro.pack(padx=10, pady=10)
 texto_Acadastro_nome = ctk.CTkLabel(frame_Acadastro, text="Nome: ", font=("Roboto", 14))
 texto_Acadastro_nome.pack(padx=10, pady=2)
@@ -227,7 +227,7 @@ caixa_Acadastro_email = ctk.CTkEntry(frame_Acadastro, placeholder_text="email@ex
 caixa_Acadastro_email.pack(padx=10, pady=2)
 texto_Acadastro_senha = ctk.CTkLabel(frame_Acadastro, text="Senha:", font=("Roboto", 14))
 texto_Acadastro_senha.pack(padx=10, pady=2)
-caixa_Acadastro_senha = ctk.CTkEntry(frame_Acadastro, placeholder_text="(00)12345-6789", width=150)
+caixa_Acadastro_senha = ctk.CTkEntry(frame_Acadastro, placeholder_text="00000", width=150)
 caixa_Acadastro_senha.pack(padx=10, pady=2)
 botao_Acadastro_registrar = ctk.CTkButton(frame_Acadastro, text="Cadastrar", font=("Roboto", 14), command=registrar)
 botao_Acadastro_registrar.pack(padx=10, pady=10)
