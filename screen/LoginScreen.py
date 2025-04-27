@@ -167,6 +167,14 @@ botao_principal_adLivro.grid(row=1, column=1, padx=10, pady=10)
 botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Livro", font= ("Roboto",14), command=mostrar_tela_Alug_Devol)
 botao_principal_AluDev.grid(row=1, column=2, padx=10, pady=10)
 
+textbox_principal_Livros = ctk.CTkTextbox(frame_principal, width=500, height=300)
+textbox_principal_Livros.grid(row=2, column=1, padx=10, pady=10)
+sucessoL, books_box = carregar_Books()
+if sucessoL:
+    box_livros = [f"Título: {book["Nome"]}\nAutor: {book["Autor(a)"]}\n Quantidade:{book["Quantidade"]}\nDescrição: {book["Descrição"]}\n \n" for book in books_box]
+    textbox_principal_Livros.insert("0.0", box_livros)
+else:
+    messagebox.showerror("ERRO", books_box)
 
 # fram 3: Tela de cadastro de ususários
 frame_Ucadastro = ctk.CTkFrame(screen)
