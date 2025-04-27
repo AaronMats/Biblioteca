@@ -251,7 +251,7 @@ botao_aluagar.place(x=20 ,y= 510)
 botao_devolver = ctk.CTkButton(frame_Alug_Devol, text = "Devolver",font=("Roboto", 14))
 botao_devolver.place(x=20 ,y= 550)
 botao_Alug_Devol_Voltar = ctk.CTkButton(frame_Alug_Devol, text="Voltar", command= mostrar_tela_principal)
-botao_Alug_Devol_Voltar.place(x=550,y= 550)
+botao_Alug_Devol_Voltar.place(x=550,y= 551)
 
 
 
