@@ -93,7 +93,7 @@ def registrar():
         messagebox.showerror("ERRO NO CADASTRO", cadastroU)
 
 # Registrar Admin
-def registrar():
+def registrar_admin():
     nome = caixa_Acadastro_nome.get()
     cpf = caixa_Acadastro_cpf.get()
     email = caixa_Acadastro_email.get()
@@ -229,7 +229,7 @@ texto_Acadastro_senha = ctk.CTkLabel(frame_Acadastro, text="Senha:", font=("Robo
 texto_Acadastro_senha.pack(padx=10, pady=2)
 caixa_Acadastro_senha = ctk.CTkEntry(frame_Acadastro, placeholder_text="00000", width=150)
 caixa_Acadastro_senha.pack(padx=10, pady=2)
-botao_Acadastro_registrar = ctk.CTkButton(frame_Acadastro, text="Cadastrar", font=("Roboto", 14), command=registrar)
+botao_Acadastro_registrar = ctk.CTkButton(frame_Acadastro, text="Cadastrar", font=("Roboto", 14), command=registrar_admin)
 botao_Acadastro_registrar.pack(padx=10, pady=10)
 botao_Acadastro_voltar_principal = ctk.CTkButton(frame_Acadastro, text="Tela principal",font=("Roboto", 14), command= mostrar_tela_principal)
 botao_Acadastro_voltar_principal.pack(padx=10, pady=10)
