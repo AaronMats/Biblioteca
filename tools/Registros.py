@@ -7,15 +7,29 @@ import os
 import hashlib
 
 class Registros:
-    def cadastro_admin(nome, email, cpf, senha):
-        senha_segura =  hashlib.sha256(senha.encode()).hexdigest()
+    def cadastro_admin(nome, cpf, email, senha):
+        try:
+            if not nome.strip():
+                raise ValueError ('Nome nao pode ser vazio.')
+            if not all(parte.isalpha() for parte in nome.split()):
+                raise ValueError('Nome deve conter apenas letras e espaços.')
+            if not cpf.isdigit() or len(cpf) != 11:
+                raise ValueError('O CPF deve conter 11 numeros.')
+            if "@" not in email or "." not in email:
+                raise ValueError('Email invalido.')
+            if not senha.strip():
+                raise ValueError('Senha nao pode ser vazia')
+            if len(senha) != 5:
+                raise ValueError('Senha deve conter 5 digitos')
+            senha_segura =  hashlib.sha256(senha.encode()).hexdigest()
 
-        adm_registrar = Admin(nome, email, cpf, senha_segura)
+            adm_registrar = Admin(nome, email, cpf, senha_segura)
 
-        adm_novo = adm_registrar.admin_dic()
+            adm_novo = adm_registrar.admin_dic()
 
-        dados_json = os.path.join(os.path.dirname(__file__), '../data', 'admins.json')
-        
+            dados_json = os.path.join(os.path.dirname(__file__), '../data', 'admins.json')
+        except ValueError as error:
+            return False, str(error)
 
         try:
             if os.path.exists(dados_json) and os.path.getsize(dados_json) > 0:
@@ -38,12 +52,43 @@ class Registros:
         except Exception as e:
             print(f"Error: {e}")
 
-    def cadastro_livro(titulo, autor, genero, descricao, edicao, quantidade):
-        livro = Livro(titulo, autor, genero, descricao, edicao, quantidade)
-
-        livro_novo = livro.livro_dic()
-        dados_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
-
+    def cadastro_livro(titulo, autor, genero, edicao, quantidade, descricao,):
+        try:#Verificando cada etapa do cadastro livro
+            if not titulo.strip():#Verifica se o titulo esta vazio
+                raise ValueError('Titulo nao pode ser vazio.')
+            if titulo.isdigit():
+                raise ValueError('Titulo nao pode ser apenas numeros.')
+            if not any(parte.isalpha() for parte in titulo.strip()):
+                raise ValueError('Titulo precisa conter pelo menos uma letra.')
+            if not autor.strip():#verifica se o autor esta vazio
+                raise ValueError('Autor nao pode ser vazio.')
+            if autor.isdigit():
+                raise ValueError('Autor nao pode ser apenas numeros.')
+            if not any(parte.isalpha() for parte in autor.strip()):
+                raise ValueError('Autor precisa conter pelo menos uma letra.')
+            if not genero.strip():#verifica se o genero esta vazio
+                raise ValueError('Genero nao pode ser vazio.')
+            if not all(parte.isalpha() for parte in genero.strip()):#verifica se o usuario colocou numeros no genero
+                raise ValueError('Genero nao pode conter numeros')
+            if not edicao.strip():#verifica se a ediçao esta vazia
+                raise ValueError('Ediçao nao pode ser vazia.')
+            if not all(parte.isdigit() for parte in edicao.strip()):#verifica se o usuario inseriu uma string na ediçao
+                raise ValueError('Ediçao deve conter apenas numeros.')
+            if not quantidade.strip():#verifica se a quantidade esta vazia
+                raise ValueError('Quantidade nao pode ser vazia.')
+            if not all(parte.isdigit() for parte in quantidade.strip()):#verifica se o usuario inseriu string na quantidade
+                raise ValueError('Quantidade deve conter apenas numeros.')
+            if quantidade.strip() == '0':#verifica se a quantidade e menor ou igual a 0
+                raise ValueError('Quantidade nao pode ser 0.')
+            if not descricao.strip():#verifica se a descriçao esta vazia
+                raise ValueError('Descriçao nao pode ser vazia.')
+            if not any(parte.isalpha() for parte in descricao.strip()):
+                raise ValueError('Descriçao precisa conter pelo menos uma letra.')
+            livro = Livro(titulo, autor, genero, descricao, edicao, quantidade)
+            livro_novo = livro.livro_dic()
+            dados_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
+        except ValueError as error:
+            return False, str(error)
         try:
             if os.path.exists(dados_json) and os.path.getsize(dados_json) > 0:
                 with open(dados_json, "r", encoding="utf-8") as arquivo:
@@ -78,7 +123,7 @@ class Registros:
             if "@" not in email or "." not in email: #Verifica se o usuario inseriu @ e . no email
                 raise ValueError('Email invalido.')
             
-            if not telefone.isdigit() or len(cpf) < 11: #verifica se o telefone tem 11 digitos
+            if not telefone.isdigit() or len(telefone) < 11: #verifica se o telefone tem 11 digitos
                 raise ValueError('Telefone invalido')
             
             usuario = Usuario(nome, email, cpf, telefone,[],[])

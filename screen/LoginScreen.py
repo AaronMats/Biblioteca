@@ -66,7 +66,7 @@ def registrar_livro():
     descricao = caixa_Lcadastro_descricao.get()
     edicao = caixa_Lcadastro_edicao.get()
     quantidade = caixa_Lcadastro_quantidade.get()
-    sucesso, cadastroL = Registros.cadastro_livro(titulo, autor, genero, descricao, edicao, quantidade)
+    sucesso, cadastroL = Registros.cadastro_livro(titulo, autor, genero, edicao, quantidade, descricao,)
     if sucesso:
         messagebox.showinfo("SUCESSO", cadastroL)
     else:
