@@ -34,8 +34,24 @@ def mostrar_tela_Lcadastro():
 def mostrar_tela_Alug_Devol():
     frame_principal.pack_forget()
     frame_Alug_Devol.pack(fill='both', expand=True)
-
-
+# Carregar arquivo users.json para o combobox
+def carregar_Users():
+    user_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
+    try:
+        with open(user_json, 'r', encoding='utf-8') as arquivo:
+            users = json.load(arquivo)
+            return True, users
+    except Exception as e:
+        return False, f'ERROR: {e}'
+    
+def carregar_Books():
+    book_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
+    try:
+        with open(book_json, 'r', encoding='utf-8') as arquivo:
+            books = json.load(arquivo)
+            return True, books
+    except Exception as e:
+        return False, f'ERROR: {e}'
 
 # Autenticação de login
 def login_autent():
@@ -217,30 +233,38 @@ texto_Alug_Devol_titulo.place(x=20 , y= 10)
 
 texto_box_usuarios= ctk.CTkLabel(frame_Alug_Devol,text="Usuários",font=("Roboto", 14))
 texto_box_usuarios.place(x=20 , y= 60)
-box_usuarios = ["u1", "u2"]
-combobox_usuarios = ctk.CTkComboBox(
-    master= frame_Alug_Devol,
-    values=box_usuarios,
-    width=200,
-    height=30,
-    dropdown_fg_color="#2b2b2b",
-    dropdown_hover_color="#3b3b3b",
-    button_color="#4b4b4b",
-)
-combobox_usuarios.place(x=20 , y= 100)
+sucessoU, users_box = carregar_Users()
+if sucessoU:
+    box_usuarios = [f"{user["Nome"]}" for user in users_box]
+    combobox_usuarios = ctk.CTkComboBox(
+        master= frame_Alug_Devol,
+        values=box_usuarios,
+        width=200,
+        height=30,
+        dropdown_fg_color="#2b2b2b",
+        dropdown_hover_color="#3b3b3b",
+        button_color="#4b4b4b",
+    )
+    combobox_usuarios.place(x=20 , y= 100)
+else:
+    messagebox.showerror("ERRO", users_box)
 
 texto_box_livro= ctk.CTkLabel(frame_Alug_Devol,text="Livros",font=("Roboto", 14))
 texto_box_livro.place(x=300 , y= 60)
-box_livros = ["u1", "u2"]
-combobox_livros = ctk.CTkComboBox(
-    master= frame_Alug_Devol,
-    values=box_livros,
-    width=200,
-    height=30,
-    dropdown_fg_color="#2b2b2b",
-    dropdown_hover_color="#3b3b3b",
-    button_color="#4b4b4b",
-)
+sucessoL, books_box = carregar_Books()
+if sucessoL:
+    box_livros = [f"{book["Nome"]}" for book in books_box]
+    combobox_livros = ctk.CTkComboBox(
+        master= frame_Alug_Devol,
+        values=box_livros,
+        width=200,
+        height=30,
+        dropdown_fg_color="#2b2b2b",
+        dropdown_hover_color="#3b3b3b",
+        button_color="#4b4b4b",
+    )
+else:
+    messagebox.showerror("ERRO", books_box)
 combobox_livros.place(x=300 ,y= 100)
 texto_quantidade_livro = ctk.CTkLabel(frame_Alug_Devol, text= "Unidades", font= ("Roboto", 14))
 texto_quantidade_livro.place(x=20,y=450)
