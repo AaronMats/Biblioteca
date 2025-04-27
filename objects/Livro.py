@@ -20,9 +20,9 @@ class Livro:
         if quantidade_devolver > 0:
             alugados = quantidade_devolver + self.__quantidade
             self.__quantidade = alugados
-            return print("Devolvido!!")
+            return True
         else:
-            return print("Valor inválido")
+            return False
         
     def set_titulo(self, novo_nome):
         self.__titulo = novo_nome

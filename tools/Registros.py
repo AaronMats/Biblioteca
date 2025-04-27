@@ -1,4 +1,4 @@
-from objects.Admin import Admin
+from objects.admin import Admin
 from objects.Livro import Livro
 from objects.Pessoa import Pessoa
 from objects.Usuario import Usuario

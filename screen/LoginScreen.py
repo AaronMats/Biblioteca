@@ -16,6 +16,7 @@ def mostrar_tela_principal():
     frame_Ucadastro.pack_forget()
     frame_Acadastro.pack_forget()
     frame_Alug_Devol.pack_forget()
+    textbox_livros.pack_forget()
     frame_principal.pack(fill='both', expand=True)
 
 def mostrar_tela_login():
@@ -141,21 +142,24 @@ def devolver_livro():
     else:
         messagebox.showerror("ERRO", menssage)
 
+
+
+
 # Set janela
 ctk.set_appearance_mode('system') 
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
 screen.title('BiblioTec')
-screen.attributes("-fullscreen", True) #ideia para tela cheia
 screen.geometry('800x600')
-def sair_tela_cheia(event=None):
-    screen.attributes("-fullscreen", False)#ideia para tela cheia
+#screen.attributes("-fullscreen", True) #ideia para tela cheia
+#def sair_tela_cheia(event=None):
+    #screen.attributes("-fullscreen", False)#ideia para tela cheia
 #screen.state("zoomed") ideia para tela cheia mas com os botoes de minimizacao, janela e
 
 # fram 1: Tela de login
 frame_login = ctk.CTkFrame(screen)
-texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
-texto_login.pack(padx=10, pady=10)
+#texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
+#texto_login.pack(padx=10, pady=10)
 texto_login = ctk.CTkLabel(frame_login, text="Login",font= ("Roboto",25))
 texto_login.pack(padx=10, pady=10)
 caixa_login_email = ctk.CTkEntry(frame_login, placeholder_text="Digite seu email", font= ("Roboto",17), width=250)
@@ -168,17 +172,32 @@ botao_login_entrar.pack(padx=10, pady=2)
 
 # fram 2: Tela principal
 frame_principal = ctk.CTkFrame(screen)
-texto_apresentacao = ctk.CTkLabel(frame_principal, text= "Bem vindo a Bibliotec", font= ("Candara Light Italic",24))
-texto_apresentacao.grid(row=0, column=0, padx= 10, pady=10)
+texto_apresentacao = ctk.CTkLabel(frame_principal, text= "Bem vindo a Bibliotec", font= ("Roboto",24))
+texto_apresentacao.place(x=20, y=20)
 botao_principal_sair= ctk.CTkButton(frame_principal, text= "Sair", command= mostrar_tela_login, font= ("Roboto",14))
-botao_principal_sair.grid(row=0, column=2, padx=10, pady=10)
+botao_principal_sair.place(x=650, y=550)
 botao_principal_adUsuario = ctk.CTkButton(frame_principal, text= "Cadastrar Usuario", font= ("Roboto",14), command= mostar_tela_Ucadastro)
-botao_principal_adUsuario.grid(row=1, column=0, padx=10, pady=10)
+botao_principal_adUsuario.place(x=130 ,y=100)
 botao_principal_adLivro = ctk.CTkButton(frame_principal, text="Cadastrar livro", font= ("Roboto",14), command=mostrar_tela_Lcadastro)
-botao_principal_adLivro.grid(row=1, column=1, padx=10, pady=10)
+botao_principal_adLivro.place(x=330,y=100)
 botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Livro", font= ("Roboto",14), command=mostrar_tela_Alug_Devol)
-botao_principal_AluDev.grid(row=1, column=2, padx=10, pady=10)
+botao_principal_AluDev.place(x=530, y=100)
 
+textbox_livros = ctk.CTkTextbox(
+    frame_principal,
+    width=400,
+    height=200,
+    wrap="word",  # Quebra de linha
+    fg_color="#2E64FE",
+    scrollbar_button_color="#4b4b4b",
+)
+textbox_livros.place(x=200, y=200)
+sucessoL, books_box = carregar_Books()
+if sucessoL:
+    box_livros = [f"Título: {book["Nome"]}\nAutor: {book["Autor(a)"]}\n Quantidade:{book["Quantidade"]}\nDescrição: {book["Descrição"]}\n \n" for book in books_box]
+    textbox_livros.insert("0.0", box_livros)
+else:
+    messagebox.showerror("ERRO",box_livros)
 
 
 # fram 3: Tela de cadastro de ususários
@@ -270,8 +289,8 @@ botao_Lcadastro_voltar.pack(padx=10, pady=10)
 
 #frame 6: Tela de alugar e devolver
 frame_Alug_Devol = ctk.CTkFrame(screen)
-texto_Alug_Devol_titulo = ctk.CTkLabel(frame_Alug_Devol, text = "Alugar ou Devolver",font=("Roboto", 14))
-texto_Alug_Devol_titulo.place(x=20 , y= 10)
+texto_Alug_Devol_titulo = ctk.CTkLabel(frame_Alug_Devol, text = "Alugar ou Devolver",font=("Roboto", 24))
+texto_Alug_Devol_titulo.place(x=20 , y= 20)
 
 texto_box_usuarios= ctk.CTkLabel(frame_Alug_Devol,text="Usuários",font=("Roboto", 14))
 texto_box_usuarios.place(x=20 , y= 60)
@@ -285,7 +304,7 @@ if sucessoU:
         height=30,
         dropdown_fg_color="#2b2b2b",
         dropdown_hover_color="#3b3b3b",
-        button_color="#4b4b4b",
+        button_color="#2E64FE",
         state="readonly"
     )
     combobox_usuarios.place(x=20 , y= 100)
@@ -294,7 +313,7 @@ else:
     messagebox.showerror("ERRO", users_box)
 
 texto_box_livro= ctk.CTkLabel(frame_Alug_Devol,text="Livros",font=("Roboto", 14))
-texto_box_livro.place(x=300 , y= 60)
+texto_box_livro.place(x=400 , y= 60)
 sucessoL, books_box = carregar_Books()
 if sucessoL:
     box_livros = [f"{book["Nome"]}" for book in books_box]
@@ -305,14 +324,14 @@ if sucessoL:
         height=30,
         dropdown_fg_color="#2b2b2b",
         dropdown_hover_color="#3b3b3b",
-        button_color="#4b4b4b",
+        button_color="#2E64FE",
         state="readonly"
     )
 else:
     messagebox.showerror("ERRO", books_box)
-combobox_livros.place(x=300 ,y= 100)
+combobox_livros.place(x=400 ,y= 100)
 texto_quantidade_livro = ctk.CTkLabel(frame_Alug_Devol, text= "Unidades", font= ("Roboto", 14))
-texto_quantidade_livro.place(x=20,y=450)
+texto_quantidade_livro.place(x=20,y=430)
 quantidade_livro = ctk.CTkEntry(frame_Alug_Devol, placeholder_text= "Unidades", width= 100)
 quantidade_livro.place(x=20 ,y= 470)
 botao_aluagar = ctk.CTkButton(frame_Alug_Devol, text = "Alugar",font=("Roboto", 14), command=alugar_livro)
@@ -320,14 +339,14 @@ botao_aluagar.place(x=20 ,y= 510)
 botao_devolver = ctk.CTkButton(frame_Alug_Devol, text = "Devolver",font=("Roboto", 14), command=devolver_livro)
 botao_devolver.place(x=20 ,y= 550)
 botao_Alug_Devol_Voltar = ctk.CTkButton(frame_Alug_Devol, text="Voltar", command= mostrar_tela_principal)
-botao_Alug_Devol_Voltar.place(x=550,y= 551)
+botao_Alug_Devol_Voltar.place(x=650,y= 550)
 
 
 mostrar_tela_login()
 
 screen.bind('<Return>', lambda event: login_autent())#so funciona no login (NAO USE FORA DO LOGIN!!)
 
-screen.bind('<Escape>', sair_tela_cheia)
+#screen.bind('<Escape>', sair_tela_cheia)
 
 screen.mainloop()
 
