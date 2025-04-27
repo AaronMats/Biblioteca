@@ -46,5 +46,17 @@
         "CPF": "00000000000",
         "Email": "lol@email.com",
         "Senha": "d17f25ecfbcc7857f7bebea469308be0b2580943e96d13a3ad98a13675c4bfc2"
+    },
+    {
+        "Nome": "arthurando",
+        "CPF": "12345678900",
+        "Email": "arthur@email.com",
+        "Senha": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5"
+    },
+    {
+        "Nome": "arthurando",
+        "CPF": "12345678900",
+        "Email": "arthur@email.com",
+        "Senha": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5"
     }
 ]

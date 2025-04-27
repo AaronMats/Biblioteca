@@ -1,4 +1,4 @@
-from objects.Admin import Admin
+from objects.admin import Admin
 from objects.Livro import Livro
 from objects.Pessoa import Pessoa
 from objects.Usuario import Usuario
@@ -48,9 +48,9 @@ class Registros:
         try:
             with open(dados_json, "w", encoding="utf-8") as arquivo:
                 json.dump(dados_json_exist, arquivo, indent= 4)
-            print("cadastrado com sucesso")
+            return True, "Administrador cadastrado com sucesso!"
         except Exception as e:
-            print(f"Error: {e}")
+            return False, "Erro ao registrar Administrador\nErro: {e}"
 
     def cadastro_livro(titulo, autor, genero, edicao, quantidade, descricao):
         try:#Verificando cada etapa do cadastro livro
