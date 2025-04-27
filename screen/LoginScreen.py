@@ -215,7 +215,7 @@ texto_Acadastro_telefone = ctk.CTkLabel(frame_Acadastro, text="Senha:", font=("R
 texto_Acadastro_telefone.pack(padx=10, pady=2)
 caixa_Acadastro_telefone = ctk.CTkEntry(frame_Acadastro, placeholder_text="(00)12345-6789", width=150)
 caixa_Acadastro_telefone.pack(padx=10, pady=2)
-botao_Acadastro_registrar = ctk.CTkButton(frame_Acadastro, text="Cadastrar", font=("Roboto", 14))
+botao_Acadastro_registrar = ctk.CTkButton(frame_Acadastro, text="Cadastrar", font=("Roboto", 14), command=registrar)
 botao_Acadastro_registrar.pack(padx=10, pady=10)
 botao_Acadastro_voltar_principal = ctk.CTkButton(frame_Acadastro, text="Tela principal",font=("Roboto", 14), command= mostrar_tela_principal)
 botao_Acadastro_voltar_principal.pack(padx=10, pady=10)
