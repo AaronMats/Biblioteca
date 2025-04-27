@@ -1,4 +1,4 @@
-from objects.Admin import Admin
+from objects.admin import Admin
 from objects.Livro import Livro
 from objects.Pessoa import Pessoa
 from objects.Usuario import Usuario
@@ -52,7 +52,7 @@ class Registros:
         except Exception as e:
             print(f"Error: {e}")
 
-    def cadastro_livro(titulo, autor, genero, edicao, quantidade, descricao,):
+    def cadastro_livro(titulo, autor, genero, edicao, quantidade, descricao):
         try:#Verificando cada etapa do cadastro livro
             if not titulo.strip():#Verifica se o titulo esta vazio
                 raise ValueError('Titulo nao pode ser vazio.')

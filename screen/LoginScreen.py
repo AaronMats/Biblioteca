@@ -10,6 +10,8 @@ def mostrar_tela_principal():
     frame_login.pack_forget()
     frame_Lcadastro.pack_forget()
     frame_Ucadastro.pack_forget()
+    frame_Acadastro.pack_forget()
+    frame_Alug_Devol.pack_forget()
     frame_principal.pack(fill='both', expand=True)
 
 def mostrar_tela_login():
@@ -18,11 +20,20 @@ def mostrar_tela_login():
 
 def mostar_tela_Ucadastro():
     frame_principal.pack_forget()
+    frame_Acadastro.pack_forget()
     frame_Ucadastro.pack(fill='both', expand=True)
+
+def mostrar_tela_Acadastro():
+    frame_Ucadastro.pack_forget()
+    frame_Acadastro.pack(fill = 'both', expand = True)
 
 def mostrar_tela_Lcadastro():
     frame_principal.pack_forget()
     frame_Lcadastro.pack(fill='both', expand=True)
+
+def mostrar_tela_Alug_Devol():
+    frame_principal.pack_forget()
+    frame_Alug_Devol.pack(fill='both', expand=True)
 
 
 
@@ -73,7 +84,6 @@ def registrar_livro():
         messagebox.showerror("ERRO NO CADASTRO", cadastroL)
 
 
-
 # Set janela
 ctk.set_appearance_mode('system') 
 ctk.set_default_color_theme('blue')
@@ -84,6 +94,7 @@ screen.geometry('800x600')
 def sair_tela_cheia(event=None):
     screen.attributes("-fullscreen", False)#ideia para tela cheia
 #screen.state("zoomed") ideia para tela cheia mas com os botoes de minimizacao, janela e
+
 # fram 1: Tela de login
 frame_login = ctk.CTkFrame(screen)
 texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
@@ -97,6 +108,7 @@ caixa_login_senha["width"] = 50
 caixa_login_senha.pack(padx=10, pady= 2)
 botao_login_entrar = ctk.CTkButton(frame_login, text= "Entrar", command= login_autent, font= ("Roboto",17))
 botao_login_entrar.pack(padx=10, pady=2)
+
 # fram 2: Tela principal
 frame_principal = ctk.CTkFrame(screen)
 texto_apresentacao = ctk.CTkLabel(frame_principal, text= "Bem vindo a Bibliotec", font= ("Candara Light Italic",24))
@@ -107,8 +119,10 @@ botao_principal_adUsuario = ctk.CTkButton(frame_principal, text= "Cadastrar Usua
 botao_principal_adUsuario.grid(row=1, column=0, padx=10, pady=10)
 botao_principal_adLivro = ctk.CTkButton(frame_principal, text="Cadastrar livro", font= ("Roboto",14), command=mostrar_tela_Lcadastro)
 botao_principal_adLivro.grid(row=1, column=1, padx=10, pady=10)
-botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Livro", font= ("Roboto",14))
+botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Livro", font= ("Roboto",14), command=mostrar_tela_Alug_Devol)
 botao_principal_AluDev.grid(row=1, column=2, padx=10, pady=10)
+
+
 # fram 3: Tela de cadastro de ususários
 frame_Ucadastro = ctk.CTkFrame(screen)
 texto_Ucadastro = ctk.CTkLabel(frame_Ucadastro, text="Cadastrar novo usuário:", font=("Roboto", 14))
@@ -131,10 +145,39 @@ caixa_Ucadastro_telefone = ctk.CTkEntry(frame_Ucadastro, placeholder_text="(00)1
 caixa_Ucadastro_telefone.pack(padx=10, pady=2)
 botao_Ucadastro_registrar = ctk.CTkButton(frame_Ucadastro, text="Cadastrar", font=("Roboto", 14), command=registrar)
 botao_Ucadastro_registrar.pack(padx=10, pady=10)
+botao_Acadastro = ctk.CTkButton(frame_Ucadastro, text= "Cadastrar Adiministrador", font = ("Roboto", 14), command = mostrar_tela_Acadastro)
+botao_Acadastro.pack(padx=10, pady=10)
 botao_Ucadastro_voltar = ctk.CTkButton(frame_Ucadastro, text="Voltar",font=("Roboto", 14), command=mostrar_tela_principal)
 botao_Ucadastro_voltar.pack(padx=10, pady=10)
 
-# fram 4: tela de cadastro de livros
+#frame 4: tela de cadastrar adiministrador
+frame_Acadastro = ctk.CTkFrame(screen)
+texto_Acadastro = ctk.CTkLabel(frame_Acadastro, text="Cadastrar novo Adiministrador:", font=("Roboto", 14))
+texto_Acadastro.pack(padx=10, pady=10)
+texto_Acadastro_nome = ctk.CTkLabel(frame_Acadastro, text="Nome: ", font=("Roboto", 14))
+texto_Acadastro_nome.pack(padx=10, pady=2)
+caixa_Acadastro_nome = ctk.CTkEntry(frame_Acadastro, placeholder_text="Nome do Usuario", width=300)
+caixa_Acadastro_nome.pack(padx=10, pady=2)
+texto_Acadastro_cpf = ctk.CTkLabel(frame_Acadastro, text= "CPF: ", font=("Roboto",14))
+texto_Acadastro_cpf.pack(padx=10, pady=2)
+caixa_Acadastro_cpf = ctk.CTkEntry(frame_Acadastro, placeholder_text="123.456.789-00", width=150)
+caixa_Acadastro_cpf.pack(padx=10, pady=2)
+texto_Acadastro_email = ctk.CTkLabel(frame_Acadastro, text="Email: ", font=("Roboto",14))
+texto_Acadastro_email.pack(padx=10, pady=2)
+caixa_Acadastro_email = ctk.CTkEntry(frame_Acadastro, placeholder_text="email@exemplo.com", width= 300)
+caixa_Acadastro_email.pack(padx=10, pady=2)
+texto_Acadastro_telefone = ctk.CTkLabel(frame_Acadastro, text="Senha:", font=("Roboto", 14))
+texto_Acadastro_telefone.pack(padx=10, pady=2)
+caixa_Acadastro_telefone = ctk.CTkEntry(frame_Acadastro, placeholder_text="(00)12345-6789", width=150)
+caixa_Acadastro_telefone.pack(padx=10, pady=2)
+botao_Acadastro_registrar = ctk.CTkButton(frame_Acadastro, text="Cadastrar", font=("Roboto", 14))
+botao_Acadastro_registrar.pack(padx=10, pady=10)
+botao_Acadastro_voltar_principal = ctk.CTkButton(frame_Acadastro, text="Tela principal",font=("Roboto", 14), command= mostrar_tela_principal)
+botao_Acadastro_voltar_principal.pack(padx=10, pady=10)
+botao_Acadastro_voltar = ctk.CTkButton(frame_Acadastro, text= "Voltar", font=("Roboto", 14), command=mostar_tela_Ucadastro)
+botao_Acadastro_voltar.pack(padx=10, pady=10)
+
+# fram 5: tela de cadastro de livros
 frame_Lcadastro = ctk.CTkFrame(screen)
 texto_Lcadastro = ctk.CTkLabel(frame_Lcadastro, text= "Cadastro de Livros:", font=("Roboto", 14))
 texto_Lcadastro.pack(padx=10, pady=10)
@@ -166,6 +209,55 @@ botao_Lcadastro_registrar = ctk.CTkButton(frame_Lcadastro, text="Registrar", com
 botao_Lcadastro_registrar.pack(padx=10, pady=2)
 botao_Lcadastro_voltar = ctk.CTkButton(frame_Lcadastro, text="Voltar", command= mostrar_tela_principal)
 botao_Lcadastro_voltar.pack(padx=10, pady=10)
+
+#frame 6: Tela de alugar e devolver
+frame_Alug_Devol = ctk.CTkFrame(screen)
+texto_Alug_Devol_titulo = ctk.CTkLabel(frame_Alug_Devol, text = "Alugar ou Devolver",font=("Roboto", 14))
+texto_Alug_Devol_titulo.place(x=20 , y= 10)
+
+texto_box_usuarios= ctk.CTkLabel(frame_Alug_Devol,text="Usuários",font=("Roboto", 14))
+texto_box_usuarios.place(x=20 , y= 60)
+box_usuarios = ["u1", "u2"]
+combobox_usuarios = ctk.CTkComboBox(
+    master= frame_Alug_Devol,
+    values=box_usuarios,
+    width=200,
+    height=30,
+    dropdown_fg_color="#2b2b2b",
+    dropdown_hover_color="#3b3b3b",
+    button_color="#4b4b4b",
+)
+combobox_usuarios.place(x=20 , y= 100)
+
+texto_box_livro= ctk.CTkLabel(frame_Alug_Devol,text="Livros",font=("Roboto", 14))
+texto_box_livro.place(x=300 , y= 60)
+box_livros = ["u1", "u2"]
+combobox_livros = ctk.CTkComboBox(
+    master= frame_Alug_Devol,
+    values=box_livros,
+    width=200,
+    height=30,
+    dropdown_fg_color="#2b2b2b",
+    dropdown_hover_color="#3b3b3b",
+    button_color="#4b4b4b",
+)
+combobox_livros.place(x=300 ,y= 100)
+texto_quantidade_livro = ctk.CTkLabel(frame_Alug_Devol, text= "Unidades", font= ("Roboto", 14))
+texto_quantidade_livro.place(x=20,y=450)
+quantidade_livro = ctk.CTkEntry(frame_Alug_Devol, placeholder_text= "Unidades", width= 100)
+quantidade_livro.place(x=20 ,y= 470)
+botao_aluagar = ctk.CTkButton(frame_Alug_Devol, text = "Alugar",font=("Roboto", 14))
+botao_aluagar.place(x=20 ,y= 510)
+botao_devolver = ctk.CTkButton(frame_Alug_Devol, text = "Devolver",font=("Roboto", 14))
+botao_devolver.place(x=20 ,y= 550)
+botao_Alug_Devol_Voltar = ctk.CTkButton(frame_Alug_Devol, text="Voltar", command= mostrar_tela_principal)
+botao_Alug_Devol_Voltar.place(x=550,y= 550)
+
+
+
+
+
+
 
 mostrar_tela_login()
 
