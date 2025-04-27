@@ -16,7 +16,6 @@ def mostrar_tela_principal():
     frame_Ucadastro.pack_forget()
     frame_Acadastro.pack_forget()
     frame_Alug_Devol.pack_forget()
-    textbox_principal_Livros.pack_forget()
     frame_principal.pack(fill='both', expand=True)
 
 def mostrar_tela_login():
