@@ -35,7 +35,7 @@ class Alugar:
                 return False, "Livro não encontrado"
         dados_livros_atualizado = [livro for livro in livros if livro["Titulo"] != nome_livro]
 
-        menssagem = usuario_aluga.alugando(livro_aluga, quantidade_livro)
+        menssagem = usuario_aluga.devolve(livro_aluga, quantidade_livro)
 
         usuario_att = usuario_aluga.usuario_dic()
         livro_att = livro_aluga.livro_dic()
