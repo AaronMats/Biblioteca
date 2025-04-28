@@ -22,27 +22,27 @@ def mostrar_tela_principal():
 def mostrar_tela_login():
     frame_principal.pack_forget()
     frame_login.pack(fill='both', expand=True)
-    screen.unbind("<Return>")
-    screen.bind("<Return>", login_autent)
+    screen.unbind("<Return>") #recurso para o enter funcionar 
+    screen.bind("<Return>", login_autent)#recurso para o enter funcionar 
 
 def mostar_tela_Ucadastro():
     frame_principal.pack_forget()
     frame_Acadastro.pack_forget()
     frame_Ucadastro.pack(fill='both', expand=True)
-    screen.unbind("<Return>")
-    screen.bind("<Return>", registrar)
+    screen.unbind("<Return>")#recurso para o enter funcionar 
+    screen.bind("<Return>", registrar)#recurso para o enter funcionar 
 
 def mostrar_tela_Acadastro():
     frame_Ucadastro.pack_forget()
     frame_Acadastro.pack(fill = 'both', expand = True)
-    screen.unbind("<Return>")
-    screen.bind("<Return>", registrar_admin)
+    screen.unbind("<Return>")#recurso para o enter funcionar 
+    screen.bind("<Return>", registrar_admin)#recurso para o enter funcionar 
 
 def mostrar_tela_Lcadastro():
     frame_principal.pack_forget()
     frame_Lcadastro.pack(fill='both', expand=True)
-    screen.unbind("<Return>")
-    screen.bind("<Return>", registrar_livro)
+    screen.unbind("<Return>")#recurso para o enter funcionar 
+    screen.bind("<Return>", registrar_livro)#recurso para o enter funcionar 
 
 def mostrar_tela_Alug_Devol():
     frame_principal.pack_forget()
@@ -208,16 +208,29 @@ ctk.set_appearance_mode('system')
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
 screen.title('BiblioTec')
-screen.geometry('800x600')
-#screen.attributes("-fullscreen", True) #ideia para tela cheia
-#def sair_tela_cheia(event=None):
-    #screen.attributes("-fullscreen", False)#ideia para tela cheia
-#screen.state("zoomed") ideia para tela cheia mas com os botoes de minimizacao, janela e
+#screen.geometry('800x600')
+screen.state('zoomed')# se der errado pode tirar
+forcar_zoom = True# se der errado pode tirar
+
+cont = 0# se der errado pode tirar
+
+def forcar_maximizado():# se der errado pode tirar
+    global cont
+    if forcar_zoom and cont < 10:
+        screen.state('zoomed')
+        cont += 1
+        screen.after(500, forcar_maximizado)
+
+def sair_tela_cheia(event=None):# se der errado pode tirar
+    global forcar_zoom
+    forcar_zoom = False
+    screen.state("normal")
+    screen.geometry('800x600')
 
 # fram 1: Tela de login
 frame_login = ctk.CTkFrame(screen)
-#texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
-#texto_login.pack(padx=10, pady=10)
+texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
+texto_login.pack(padx=10, pady=10)
 texto_login = ctk.CTkLabel(frame_login, text="Login",font= ("Roboto",25))
 texto_login.pack(padx=10, pady=10)
 caixa_login_email = ctk.CTkEntry(frame_login, placeholder_text="Digite seu email", font= ("Roboto",17), width=250)
@@ -399,11 +412,10 @@ botao_devolver.place(x=20 ,y= 550)
 botao_Alug_Devol_Voltar = ctk.CTkButton(frame_Alug_Devol, text="Voltar", command= mostrar_tela_principal)
 botao_Alug_Devol_Voltar.place(x=650,y= 550)
 
-
 mostrar_tela_login()
 
-#screen.bind('<Escape>', sair_tela_cheia)
+forcar_maximizado()# se der errado pode tirar
+
+screen.bind("<Escape>", sair_tela_cheia)# se der errado pode tirar
 
 screen.mainloop()
-
-    
