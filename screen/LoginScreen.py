@@ -15,9 +15,14 @@ def mostrar_tela_principal():
     frame_Lcadastro.pack_forget()
     frame_Ucadastro.pack_forget()
     frame_Acadastro.pack_forget()
+    frame_Usuarios.pack_forget()
     frame_Alug_Devol.pack_forget()
     textbox_livros.pack_forget()
     frame_principal.pack(fill='both', expand=True)
+
+def mostar_usuarios():
+    frame_principal.pack_forget()
+    frame_Usuarios.pack(fill="both", expand=True)
 
 def mostrar_tela_login():
     frame_principal.pack_forget()
@@ -208,29 +213,29 @@ ctk.set_appearance_mode('system')
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
 screen.title('BiblioTec')
-#screen.geometry('800x600')
-screen.state('zoomed')# se der errado pode tirar
-forcar_zoom = True# se der errado pode tirar
+screen.geometry('800x600')
+# screen.state('zoomed')# se der errado pode tirar
+# forcar_zoom = True# se der errado pode tirar
 
-cont = 0# se der errado pode tirar
+# cont = 0# se der errado pode tirar
 
-def forcar_maximizado():# se der errado pode tirar
-    global cont
-    if forcar_zoom and cont < 10:
-        screen.state('zoomed')
-        cont += 1
-        screen.after(500, forcar_maximizado)
+# def forcar_maximizado():# se der errado pode tirar
+#     global cont
+#     if forcar_zoom and cont < 10:
+#         screen.state('zoomed')
+#         cont += 1
+#         screen.after(500, forcar_maximizado)
 
-def sair_tela_cheia(event=None):# se der errado pode tirar
-    global forcar_zoom
-    forcar_zoom = False
-    screen.state("normal")
-    screen.geometry('800x600')
+# def sair_tela_cheia(event=None):# se der errado pode tirar
+#     global forcar_zoom
+#     forcar_zoom = False
+#     screen.state("normal")
+#     screen.geometry('800x600')
 
 # fram 1: Tela de login
 frame_login = ctk.CTkFrame(screen)
-texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
-texto_login.pack(padx=10, pady=10)
+#texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
+#texto_login.pack(padx=10, pady=10)
 texto_login = ctk.CTkLabel(frame_login, text="Login",font= ("Roboto",25))
 texto_login.pack(padx=10, pady=10)
 caixa_login_email = ctk.CTkEntry(frame_login, placeholder_text="Digite seu email", font= ("Roboto",17), width=250)
@@ -253,7 +258,8 @@ botao_principal_adLivro = ctk.CTkButton(frame_principal, text="Cadastrar livro",
 botao_principal_adLivro.place(x=330,y=100)
 botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Livro", font= ("Roboto",14), command=mostrar_tela_Alug_Devol)
 botao_principal_AluDev.place(x=530, y=100)
-
+botao_principal_usuarios = ctk.CTkButton(frame_principal, text="Usuarios", font=("Roboto", 14), command=mostar_usuarios)
+botao_principal_usuarios.place(x=330, y=150)
 textbox_livros = ctk.CTkTextbox(
     frame_principal,
     width=400,
@@ -265,10 +271,11 @@ textbox_livros = ctk.CTkTextbox(
 textbox_livros.place(x=200, y=200)
 sucessoL, books_box = carregar_Books()
 if sucessoL:
-    box_livros = [f"Título: {book["Nome"]}\nAutor: {book["Autor(a)"]}\n Quantidade:{book["Quantidade"]}\nDescrição: {book["Descrição"]}\n \n" for book in books_box]
-    textbox_livros.insert("0.0", box_livros)
+    box_livros = [f"Título: {book["Nome"]}\nAutor: {book["Autor(a)"]}\nQuantidade:{book["Quantidade"]}\nDescrição: {book["Descrição"]}\n \n" for book in books_box]
+    textbox_livros.insert("end", box_livros)
+    textbox_livros.configure(state="disabled") #evita que o usuário mexa na caixa de texto
 else:
-    messagebox.showerror("ERRO",box_livros)
+    messagebox.showerror("ERRO",books_box)
 
 
 # fram 3: Tela de cadastro de ususários
@@ -412,10 +419,34 @@ botao_devolver.place(x=20 ,y= 550)
 botao_Alug_Devol_Voltar = ctk.CTkButton(frame_Alug_Devol, text="Voltar", command= mostrar_tela_principal)
 botao_Alug_Devol_Voltar.place(x=650,y= 550)
 
+#Frame 7: tela de usuários
+frame_Usuarios = ctk.CTkFrame(screen)
+texto_Usuarios = ctk.CTkLabel(frame_Usuarios, text="Usuarios Cadastrados:", font= ("Roboto", 20))
+texto_Usuarios.pack(padx=10, pady=10)
+textbox_Usuarios = ctk.CTkTextbox(
+    frame_Usuarios,
+    width=500,
+    height=350,
+    wrap="word",  # Quebra de linha
+    fg_color="#2E64FE",
+    scrollbar_button_color="#4b4b4b",
+)
+textbox_Usuarios.pack(padx=10, pady=10)
+sucessoU, users = carregar_Users()
+if sucessoU:
+    box_Usuarios = [f"Nome: {user["Nome"]}\nCPF: {user["CPF"]}\nEmail: {user["Email"]}\nTelefone: {user["Telefone"]}\nLivros Alugados: {user["livros alugados"]} - \nQuantidade Alugada: {user["quantidade Alugada"]}\n \n" for user in users]
+    textbox_Usuarios.insert("end", box_Usuarios)
+    textbox_Usuarios.configure(state="disabled")
+else:
+    messagebox.showerror("ERRO", users)
+botao_usuarios_voltar = ctk.CTkButton(frame_Usuarios, text="Voltar", font=("Roboto", 14), command=mostrar_tela_principal)
+botao_usuarios_voltar.pack(padx=10, pady=10)
+
+
 mostrar_tela_login()
 
-forcar_maximizado()# se der errado pode tirar
+# forcar_maximizado()# se der errado pode tirar
 
-screen.bind("<Escape>", sair_tela_cheia)# se der errado pode tirar
+# screen.bind("<Escape>", sair_tela_cheia)# se der errado pode tirar
 
 screen.mainloop()
