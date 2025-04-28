@@ -5,7 +5,17 @@ from objects.Livro import Livro
 
 class Alugar:
     def alugar(user_selecionado, nome_livro, quantidade_livro):
-        
+        try:
+            if not user_selecionado:
+                raise ValueError('Usuario nao selecionado ou invalido.')
+            if not nome_livro:
+                raise ValueError('Livro nao selecionado ou invalido.')
+            if quantidade_livro <= 0:
+                raise ValueError('Quantidade Invalida')
+            if not quantidade_livro:
+                raise ValueError('Quantidade nao pode ser vazia')
+        except ValueError as e:
+            return False, str(e)
         dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
         dados_livros_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
 

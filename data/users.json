@@ -8,10 +8,10 @@
         "quantidade Alugada": []
     },
     {
-        "Nome": "Fulano de tal",
-        "CPF": "098765432111",
-        "Email": "fulano@detal.com",
-        "Telefone": "000000000",
+        "Nome": "Kleber Kayky Coelho Cruz",
+        "CPF": "009.123.450-00",
+        "Email": "kleber@yahoo.com.br",
+        "Telefone": "96999123111",
         "livros alugados": [],
         "quantidade Alugada": []
     },
@@ -20,6 +20,18 @@
         "CPF": "123345678900",
         "Email": "arthur@gmail.com",
         "Telefone": "36336363636",
+        "livros alugados": [
+            "Duna"
+        ],
+        "quantidade Alugada": [
+            1
+        ]
+    },
+    {
+        "Nome": "Fulano de tal",
+        "CPF": "098765432111",
+        "Email": "fulano@detal.com",
+        "Telefone": "000000000",
         "livros alugados": [],
         "quantidade Alugada": []
     },
@@ -28,14 +40,6 @@
         "CPF": "004679",
         "Email": "martel@martel.page",
         "Telefone": "969855",
-        "livros alugados": [],
-        "quantidade Alugada": []
-    },
-    {
-        "Nome": "Kleber Kayky Coelho Cruz",
-        "CPF": "009.123.450-00",
-        "Email": "kleber@yahoo.com.br",
-        "Telefone": "96999123111",
         "livros alugados": [],
         "quantidade Alugada": []
     }
