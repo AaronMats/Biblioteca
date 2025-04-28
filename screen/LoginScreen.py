@@ -119,30 +119,42 @@ def registrar_livro():
         messagebox.showerror("ERRO NO CADASTRO", cadastroL)
 # Função de alugar livro
 def alugar_livro():
-    usuario = combobox_usuarios.get()
-    livro = combobox_livros.get()
-    quantidade = int(quantidade_livro.get())
+    try:
+        usuario = combobox_usuarios.get()
+        livro = combobox_livros.get()
+        quantidade_str = quantidade_livro.get().strip()
+        if not quantidade_str:
+            raise ValueError('Por favor, informe a quantidade de livros')
+        if not quantidade_str.isdigit():
+            raise ValueError('Quantidade invalida. Informe apenas numeros')
+        quantidade = int(quantidade_str)
 
-    sucessoA, menssage= Alugar.alugar(usuario, livro, quantidade)
-
+        sucessoA, menssage= Alugar.alugar(usuario, livro, quantidade)
+    except ValueError as e:
+        messagebox.showerror("ERRO", str(e))
     if sucessoA:
         messagebox.showinfo("SUCESSO", menssage)
     else:
         messagebox.showerror("ERRO", menssage)
 # Função de devolver Livro
 def devolver_livro():
-    usuario = combobox_usuarios.get()
-    livro = combobox_livros.get()
-    quantidade = int(quantidade_livro.get())
+    try:
+        usuario = combobox_usuarios.get()
+        livro = combobox_livros.get()
+        quantidade_str = quantidade_livro.get().strip()
+        if not quantidade_str:
+            raise ValueError('Por favor, informe a quantidade de livros')
+        if not quantidade_str.isdigit():
+            raise ValueError('Quantidade invalida. Informe apenas numeros')
+        quantidade = int(quantidade_str)
 
-    sucessoD, menssage = Devolver.devolver(usuario, livro, quantidade)
-
+        sucessoD, menssage= Devolver.devolver(usuario, livro, quantidade)
+    except ValueError as e:
+        messagebox.showerror("ERRO", str(e))
     if sucessoD:
         messagebox.showinfo("SUCESSO", menssage)
     else:
         messagebox.showerror("ERRO", menssage)
-
-
 
 
 # Set janela
