@@ -22,19 +22,27 @@ def mostrar_tela_principal():
 def mostrar_tela_login():
     frame_principal.pack_forget()
     frame_login.pack(fill='both', expand=True)
+    screen.unbind("<Return>")
+    screen.bind("<Return>", login_autent)
 
 def mostar_tela_Ucadastro():
     frame_principal.pack_forget()
     frame_Acadastro.pack_forget()
     frame_Ucadastro.pack(fill='both', expand=True)
+    screen.unbind("<Return>")
+    screen.bind("<Return>", registrar)
 
 def mostrar_tela_Acadastro():
     frame_Ucadastro.pack_forget()
     frame_Acadastro.pack(fill = 'both', expand = True)
+    screen.unbind("<Return>")
+    screen.bind("<Return>", registrar_admin)
 
 def mostrar_tela_Lcadastro():
     frame_principal.pack_forget()
     frame_Lcadastro.pack(fill='both', expand=True)
+    screen.unbind("<Return>")
+    screen.bind("<Return>", registrar_livro)
 
 def mostrar_tela_Alug_Devol():
     frame_principal.pack_forget()
@@ -61,7 +69,7 @@ def carregar_Books():
         return False, f'ERROR: {e}'
 
 # Autenticação de login
-def login_autent():
+def login_autent(event=None):
     email = caixa_login_email.get()
     senha = caixa_login_senha.get()
     caixa_login_senha.delete(0, 'end')
@@ -82,7 +90,7 @@ def login_autent():
         messagebox.showerror("ERROR", "Arquivo não encontrado")
         
 # Registrar Usuario
-def registrar():
+def registrar(event=None):
     nome = caixa_Ucadastro_nome.get()
     cpf = caixa_Ucadastro_cpf.get()
     email = caixa_Ucadastro_email.get()
@@ -104,7 +112,7 @@ def registrar():
         messagebox.showerror("ERRO NO CADASTRO", cadastroU)
 
 # Registrar Admin
-def registrar_admin():
+def registrar_admin(event= None):
     nome = caixa_Acadastro_nome.get()
     cpf = caixa_Acadastro_cpf.get()
     email = caixa_Acadastro_email.get()
@@ -126,7 +134,7 @@ def registrar_admin():
         messagebox.showerror("ERRO NO CADASTRO", cadastroA)
 
 # Registrar Livro
-def registrar_livro():
+def registrar_livro(event= None):
     titulo = caixa_Lcadastro_titulo.get()
     autor = caixa_Lcadastro_autor.get()
     genero = caixa_Lcadastro_genero.get()
@@ -272,7 +280,7 @@ caixa_Ucadastro_telefone = ctk.CTkEntry(frame_Ucadastro, placeholder_text="(00)1
 caixa_Ucadastro_telefone.pack(padx=10, pady=2)
 botao_Ucadastro_registrar = ctk.CTkButton(frame_Ucadastro, text="Cadastrar", font=("Roboto", 14), command=registrar)
 botao_Ucadastro_registrar.pack(padx=10, pady=10)
-botao_Acadastro = ctk.CTkButton(frame_Ucadastro, text= "Cadastrar Adiministrador", font = ("Roboto", 14), command = mostrar_tela_Acadastro)
+botao_Acadastro = ctk.CTkButton(frame_Ucadastro, text= "Cadastrar Administrador", font = ("Roboto", 14), command = mostrar_tela_Acadastro)
 botao_Acadastro.pack(padx=10, pady=10)
 botao_Ucadastro_voltar = ctk.CTkButton(frame_Ucadastro, text="Voltar",font=("Roboto", 14), command=mostrar_tela_principal)
 botao_Ucadastro_voltar.pack(padx=10, pady=10)
@@ -295,7 +303,7 @@ caixa_Acadastro_email = ctk.CTkEntry(frame_Acadastro, placeholder_text="email@ex
 caixa_Acadastro_email.pack(padx=10, pady=2)
 texto_Acadastro_senha = ctk.CTkLabel(frame_Acadastro, text="Senha:", font=("Roboto", 14))
 texto_Acadastro_senha.pack(padx=10, pady=2)
-caixa_Acadastro_senha = ctk.CTkEntry(frame_Acadastro, placeholder_text="00000", width=150)
+caixa_Acadastro_senha = ctk.CTkEntry(frame_Acadastro, placeholder_text="Ex:00000", width=150)
 caixa_Acadastro_senha.pack(padx=10, pady=2)
 botao_Acadastro_registrar = ctk.CTkButton(frame_Acadastro, text="Cadastrar", font=("Roboto", 14), command=registrar_admin)
 botao_Acadastro_registrar.pack(padx=10, pady=10)
@@ -380,9 +388,9 @@ if sucessoL:
 else:
     messagebox.showerror("ERRO", books_box)
 combobox_livros.place(x=400 ,y= 100)
-texto_quantidade_livro = ctk.CTkLabel(frame_Alug_Devol, text= "Unidades", font= ("Roboto", 14))
+texto_quantidade_livro = ctk.CTkLabel(frame_Alug_Devol, text= "Quantidade:", font= ("Roboto", 14))
 texto_quantidade_livro.place(x=20,y=430)
-quantidade_livro = ctk.CTkEntry(frame_Alug_Devol, placeholder_text= "Unidades", width= 100)
+quantidade_livro = ctk.CTkEntry(frame_Alug_Devol, placeholder_text= "0", width= 100)
 quantidade_livro.place(x=20 ,y= 470)
 botao_aluagar = ctk.CTkButton(frame_Alug_Devol, text = "Alugar",font=("Roboto", 14), command=alugar_livro)
 botao_aluagar.place(x=20 ,y= 510)
@@ -393,8 +401,6 @@ botao_Alug_Devol_Voltar.place(x=650,y= 550)
 
 
 mostrar_tela_login()
-
-screen.bind('<Return>', lambda event: login_autent())#so funciona no login (NAO USE FORA DO LOGIN!!)
 
 #screen.bind('<Escape>', sair_tela_cheia)
 
