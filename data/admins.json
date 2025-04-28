@@ -70,5 +70,11 @@
         "CPF": "00000000000",
         "Email": "Master44@email.com",
         "Senha": "c3a0bea84292f62478276c04a12692fde509a20ef9517cd92c7507115add6c35"
+    },
+    {
+        "Nome": "Pedro",
+        "CPF": "09876543211",
+        "Email": "pedro@email.com",
+        "Senha": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5"
     }
 ]

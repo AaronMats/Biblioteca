@@ -1,11 +1,11 @@
 [
     {
-        "Nome": "Duna",
-        "Autor(a)": "Frank Herbert ",
-        "Genero": "Romance",
-        "Edi\u00e7\u00e3o": "4",
-        "Quantidade": 1,
-        "Descri\u00e7\u00e3o": "Duna se passa em um futuro distante no meio de um imp\u00e9rio intergal\u00e1ctico feudal em expans\u00e3o, onde feudos planet\u00e1rios s\u00e3o controlados por Casas nobres que devem alian\u00e7a \u00e0 casta imperial da Casa Corrino."
+        "Nome": "Harry poter e a pedra filosofal",
+        "Autor(a)": "J.K. Rowling",
+        "Genero": "Fantasia",
+        "Edi\u00e7\u00e3o": "1",
+        "Quantidade": 5,
+        "Descri\u00e7\u00e3o": "\"Harry Potter e a Pedra Filosofal\" \u00e9 o primeiro livro da s\u00e9rie de fantasia \"Harry Potter\", escrita por J. K. Rowling. A hist\u00f3ria acompanha Harry Potter, um menino \u00f3rf\u00e3o que descobre ser um bruxo no seu d\u00e9cimo primeiro anivers\u00e1rio e \u00e9 convidado para estudar na Escola de Magia e Bruxaria de Hogwarts. L\u00e1, ele conhece seus melhores amigos, Rony Weasley e Hermione Granger, e embarca em uma aventura para proteger a Pedra Filosofal de Lord Voldemort, que busca a imortalidade atrav\u00e9s dela."
     },
     {
         "Nome": "O Processo",
@@ -14,5 +14,13 @@
         "Edi\u00e7\u00e3o": "2",
         "Quantidade": 0,
         "Descri\u00e7\u00e3o": "\"O Processo\", de Franz Kafka, \u00e9 um romance que narra a hist\u00f3ria de Josef K., um funcion\u00e1rio banc\u00e1rio que \u00e9 submetido a um processo legal incompreens\u00edvel e sem qualquer explica\u00e7\u00e3o l\u00f3gica."
+    },
+    {
+        "Nome": "Duna",
+        "Autor(a)": "Frank Herbert ",
+        "Genero": "Romance",
+        "Edi\u00e7\u00e3o": "4",
+        "Quantidade": 2,
+        "Descri\u00e7\u00e3o": "Duna se passa em um futuro distante no meio de um imp\u00e9rio intergal\u00e1ctico feudal em expans\u00e3o, onde feudos planet\u00e1rios s\u00e3o controlados por Casas nobres que devem alian\u00e7a \u00e0 casta imperial da Casa Corrino."
     }
 ]
