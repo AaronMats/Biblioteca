@@ -209,7 +209,7 @@ if sucessoL:
     box_livros = [f"Título: {book["Nome"]}\nAutor: {book["Autor(a)"]}\n Quantidade:{book["Quantidade"]}\nDescrição: {book["Descrição"]}\n \n" for book in books_box]
     textbox_livros.insert("0.0", box_livros)
 else:
-    messagebox.showerror("ERRO",box_livros)
+    messagebox.showerror("ERRO",books_box)
 
 
 # fram 3: Tela de cadastro de ususários
