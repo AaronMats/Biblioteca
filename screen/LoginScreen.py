@@ -64,6 +64,7 @@ def carregar_Books():
 def login_autent():
     email = caixa_login_email.get()
     senha = caixa_login_senha.get()
+    caixa_login_senha.delete(0, 'end')
     senha_segura = hashlib.sha256(senha.encode()).hexdigest()
     dados = os.path.join(os.path.dirname(__file__), "../data", "admins.json")
 
