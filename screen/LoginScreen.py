@@ -86,6 +86,16 @@ def registrar():
     cpf = caixa_Ucadastro_cpf.get()
     email = caixa_Ucadastro_email.get()
     telefone = caixa_Ucadastro_telefone.get()
+
+    #para resetar os campos de entrada
+    caixa_Ucadastro_nome.delete(0, 'end')
+    caixa_Ucadastro_cpf.delete(0, 'end')
+    caixa_Ucadastro_email.delete(0, 'end')
+    caixa_Ucadastro_telefone.delete(0,'end')
+    
+    # Opcional: voltar o foco para o primeiro campo
+    caixa_Ucadastro_nome.focus()
+
     sucesso, cadastroU = Registros.cadastro_usuario(nome, cpf, email, telefone)
     if sucesso:
         messagebox.showinfo("SUCESSO", cadastroU)
@@ -98,6 +108,16 @@ def registrar_admin():
     cpf = caixa_Acadastro_cpf.get()
     email = caixa_Acadastro_email.get()
     senha = caixa_Acadastro_senha.get()
+
+    #para resetar os campos de entrada
+    caixa_Acadastro_nome.delete(0, 'end')
+    caixa_Acadastro_cpf.delete(0, 'end')
+    caixa_Acadastro_email.delete(0, 'end')
+    caixa_Acadastro_senha.delete(0,'end')
+    
+    # Opcional: voltar o foco para o primeiro campo
+    caixa_Acadastro_nome.focus()
+
     sucesso, cadastroA = Registros.cadastro_admin(nome, cpf, email, senha)
     if sucesso:
         messagebox.showinfo("SUCESSO", cadastroA)
@@ -112,6 +132,17 @@ def registrar_livro():
     descricao = caixa_Lcadastro_descricao.get()
     edicao = caixa_Lcadastro_edicao.get()
     quantidade = caixa_Lcadastro_quantidade.get()
+
+    #para resetar os campos de entrada
+    caixa_Lcadastro_titulo.delete(0, 'end')
+    caixa_Lcadastro_autor.delete(0, 'end')
+    caixa_Lcadastro_genero.delete(0, 'end')
+    caixa_Lcadastro_descricao.delete(0,'end')
+    caixa_Lcadastro_edicao.delete(0 ,'end')
+    caixa_Lcadastro_quantidade.delete(0, 'end')
+
+    # Opcional: voltar o foco para o primeiro campo
+    caixa_Lcadastro_titulo.focus()
     sucesso, cadastroL = Registros.cadastro_livro(titulo, autor, genero, edicao, quantidade, descricao,)
     if sucesso:
         messagebox.showinfo("SUCESSO", cadastroL)
@@ -123,6 +154,9 @@ def alugar_livro():
         usuario = combobox_usuarios.get()
         livro = combobox_livros.get()
         quantidade_str = quantidade_livro.get().strip()
+        combobox_usuarios.set("")
+        combobox_livros.set("")
+        quantidade_livro.delete(0,'end')
         if not quantidade_str:
             raise ValueError('Por favor, informe a quantidade de livros')
         if not quantidade_str.isdigit():
@@ -142,6 +176,9 @@ def devolver_livro():
         usuario = combobox_usuarios.get()
         livro = combobox_livros.get()
         quantidade_str = quantidade_livro.get().strip()
+        combobox_usuarios.set("")
+        combobox_livros.set("")
+        quantidade_livro.delete(0,'end')
         if not quantidade_str:
             raise ValueError('Por favor, informe a quantidade de livros')
         if not quantidade_str.isdigit():

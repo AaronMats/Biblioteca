@@ -1,18 +1,18 @@
 [
     {
-        "Nome": "O Processo",
-        "Autor(a)": "Franz Kafka",
-        "Genero": "Romance",
-        "Edi\u00e7\u00e3o": "2",
-        "Quantidade": 1,
-        "Descri\u00e7\u00e3o": "\"O Processo\", de Franz Kafka, \u00e9 um romance que narra a hist\u00f3ria de Josef K., um funcion\u00e1rio banc\u00e1rio que \u00e9 submetido a um processo legal incompreens\u00edvel e sem qualquer explica\u00e7\u00e3o l\u00f3gica."
-    },
-    {
         "Nome": "Duna",
         "Autor(a)": "Frank Herbert ",
         "Genero": "Romance",
         "Edi\u00e7\u00e3o": "4",
-        "Quantidade": 2,
+        "Quantidade": 1,
         "Descri\u00e7\u00e3o": "Duna se passa em um futuro distante no meio de um imp\u00e9rio intergal\u00e1ctico feudal em expans\u00e3o, onde feudos planet\u00e1rios s\u00e3o controlados por Casas nobres que devem alian\u00e7a \u00e0 casta imperial da Casa Corrino."
+    },
+    {
+        "Nome": "O Processo",
+        "Autor(a)": "Franz Kafka",
+        "Genero": "Romance",
+        "Edi\u00e7\u00e3o": "2",
+        "Quantidade": 0,
+        "Descri\u00e7\u00e3o": "\"O Processo\", de Franz Kafka, \u00e9 um romance que narra a hist\u00f3ria de Josef K., um funcion\u00e1rio banc\u00e1rio que \u00e9 submetido a um processo legal incompreens\u00edvel e sem qualquer explica\u00e7\u00e3o l\u00f3gica."
     }
 ]
