@@ -17,7 +17,6 @@ def mostrar_tela_principal():
     frame_Acadastro.pack_forget()
     frame_Usuarios.pack_forget()
     frame_Alug_Devol.pack_forget()
-    textbox_livros.pack_forget()
     frame_principal.pack(fill='both', expand=True)
 
 def mostar_usuarios():
@@ -72,6 +71,17 @@ def carregar_Books():
             return True, books
     except Exception as e:
         return False, f'ERROR: {e}'
+    
+def tabela_livros(book_json):
+    book_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
+    try:
+        with open(book_json, 'r', encoding='utf-8') as arquivo:
+            books = json.load(arquivo)
+            return books
+    except FileExistsError:
+        return []
+    except json.JSONDecodeError:
+        return []
 
 # Autenticação de login
 def login_autent(event=None):
@@ -250,8 +260,6 @@ botao_login_entrar.pack(padx=10, pady=2)
 frame_principal = ctk.CTkFrame(screen)
 texto_apresentacao = ctk.CTkLabel(frame_principal, text= "Bem vindo a Bibliotec", font= ("Roboto",24))
 texto_apresentacao.place(x=20, y=20)
-botao_principal_sair= ctk.CTkButton(frame_principal, text= "Sair", command= mostrar_tela_login, font= ("Roboto",14))
-botao_principal_sair.place(x=650, y=550)
 botao_principal_adUsuario = ctk.CTkButton(frame_principal, text= "Cadastrar Usuario", font= ("Roboto",14), command= mostar_tela_Ucadastro)
 botao_principal_adUsuario.place(x=130 ,y=100)
 botao_principal_adLivro = ctk.CTkButton(frame_principal, text="Cadastrar livro", font= ("Roboto",14), command=mostrar_tela_Lcadastro)
@@ -260,23 +268,58 @@ botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Li
 botao_principal_AluDev.place(x=530, y=100)
 botao_principal_usuarios = ctk.CTkButton(frame_principal, text="Usuarios", font=("Roboto", 14), command=mostar_usuarios)
 botao_principal_usuarios.place(x=330, y=150)
-textbox_livros = ctk.CTkTextbox(
-    frame_principal,
-    width=400,
-    height=200,
-    wrap="word",  # Quebra de linha
-    fg_color="#2E64FE",
-    scrollbar_button_color="#4b4b4b",
-)
-textbox_livros.place(x=200, y=200)
-sucessoL, books_box = carregar_Books()
-if sucessoL:
-    box_livros = [f"Título: {book["Nome"]}\nAutor: {book["Autor(a)"]}\nQuantidade:{book["Quantidade"]}\nDescrição: {book["Descrição"]}\n \n" for book in books_box]
-    textbox_livros.insert("end", box_livros)
-    textbox_livros.configure(state="disabled") #evita que o usuário mexa na caixa de texto
-else:
-    messagebox.showerror("ERRO",books_box)
 
+livros = tabela_livros("books.json")
+info_livro = ["Título", "Edição", "Genêro", "Autor", "Quantidade" ]
+caixa_de_livros = ctk.CTkScrollableFrame(frame_principal, width=600, height=300)
+caixa_de_livros.place(x=100,y=210)
+
+for coluna, titulo in enumerate(info_livro):
+    tabela_org = ctk.CTkLabel(
+        caixa_de_livros,
+        text = titulo, 
+        font=("Arial", 14),
+        width=120,
+        height=30
+    )
+    tabela_org.grid(row=0, column=coluna, padx=5,pady=5)
+for linha, pessoa in enumerate(livros, start=1):
+    ctk.CTkLabel(
+        caixa_de_livros,
+        text=pessoa["Nome"],
+        width= 120,
+        height=30
+    ).grid(row=linha, column=0, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_livros,
+        text=pessoa["Edi\u00e7\u00e3o"],
+        width= 120,
+        height=30
+    ).grid(row=linha, column=1, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_livros,
+        text=pessoa["Genero"],
+        width= 120,
+        height=30
+    ).grid(row=linha, column=2, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_livros,
+        text=pessoa["Autor(a)"],
+        width= 120,
+        height=30
+    ).grid(row=linha, column=3, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_livros,
+        text=pessoa["Quantidade"],
+        width= 120,
+        height=30
+    ).grid(row=linha, column=4, padx=2, pady=2)
+
+for col in range(len(info_livro)):
+    caixa_de_livros.grid_columnconfigure(col, weight=1)
+    
+botao_principal_sair= ctk.CTkButton(frame_principal, text= "Sair", command= mostrar_tela_login, font= ("Roboto",14))
+botao_principal_sair.place(x=650, y=550)
 
 # fram 3: Tela de cadastro de ususários
 frame_Ucadastro = ctk.CTkFrame(screen)
