@@ -34,7 +34,13 @@ class Registros:
         try:
             if os.path.exists(dados_json) and os.path.getsize(dados_json) > 0:
                 with open(dados_json, "r", encoding="utf-8") as arquivo:
-                    dados_json_exist = json.load(arquivo)
+                    dados_exist = json.load(arquivo)
+
+                for userAdm in dados_exist:
+                    if userAdm.get("CPF", "").strip().lower() == cpf.lower():
+                        return False,'Administrador com mesmo CPF ja esta cadastrado.'
+                    if userAdm.get("Email", "").strip() == email.strip():
+                        return False,'Administrador com mesmo email ja esta cadastrado.'
             else:
                 dados_json_exist = []
         except json.JSONDecodeError:
@@ -52,7 +58,7 @@ class Registros:
         except Exception as e:
             return False, "Erro ao registrar Administrador\nErro: {e}"
 
-    def cadastro_livro(titulo, autor, genero, edicao, quantidade, descricao):
+    def cadastro_livro(titulo, autor, genero, edicao, quantidade, descricao, dados_json="books.json"):
         try:#Verificando cada etapa do cadastro livro
             if not titulo.strip():#Verifica se o titulo esta vazio
                 raise ValueError('Titulo nao pode ser vazio.')
@@ -93,6 +99,10 @@ class Registros:
             if os.path.exists(dados_json) and os.path.getsize(dados_json) > 0:
                 with open(dados_json, "r", encoding="utf-8") as arquivo:
                     dados_exist = json.load(arquivo)
+
+                for livro in dados_exist:
+                    if livro.get("Nome", "").strip().lower() == titulo.lower() and livro.get("Edi\u00e7\u00e3o", "") .strip() == edicao.strip():
+                        return False,'Este livro com mesma ediçao ja esta cadastrado.'
             else:
                 dados_exist = []
         except json.JSONDecodeError:
@@ -136,7 +146,15 @@ class Registros:
         try:
             if os.path.exists(usuario_json) and os.path.getsize(usuario_json) > 0:
                 with open(usuario_json, "r", encoding="utf-8") as arquivo:
-                    usuarios_exist = json.load(arquivo)
+                    dados_exist = json.load(arquivo)
+
+                for userAdm in dados_exist:
+                    if userAdm.get("CPF", "").strip().lower() == cpf.lower():
+                        return False,'Usuario com mesmo CPF ja esta cadastrado.'
+                    if userAdm.get("Email", "").strip() == email.strip():
+                        return False,'Usuario com mesmo email ja esta cadastrado.'
+                    if userAdm.get("Telefone", "").strip() == telefone.strip():
+                        return False,'Usuario com mesmo telefone ja esta cadastrado.'
             else:
                 usuarios_exist = []
         except json.JSONDecodeError:
