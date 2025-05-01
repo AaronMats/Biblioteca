@@ -22,5 +22,21 @@
         "Edi\u00e7\u00e3o": "4",
         "Quantidade": 2,
         "Descri\u00e7\u00e3o": "Duna se passa em um futuro distante no meio de um imp\u00e9rio intergal\u00e1ctico feudal em expans\u00e3o, onde feudos planet\u00e1rios s\u00e3o controlados por Casas nobres que devem alian\u00e7a \u00e0 casta imperial da Casa Corrino."
+    },
+    {
+        "Nome": "harry potter e o prisioneiro de azkaban",
+        "Autor(a)": "J. k. Rowling",
+        "Genero": "Fantasia",
+        "Edi\u00e7\u00e3o": "2",
+        "Quantidade": 10,
+        "Descri\u00e7\u00e3o": "descri\u00e7\u00e3o gen\u00e9rica"
+    },
+    {
+        "Nome": "A Metamorfose",
+        "Autor(a)": "Franz Kafka",
+        "Genero": "suspense",
+        "Edi\u00e7\u00e3o": "2",
+        "Quantidade": 0,
+        "Descri\u00e7\u00e3o": "A metamorfose (Die Verwandlung, em alem\u00e3o) \u00e9 uma novela escrita por Franz Kafka, publicada pela primeira vez em 1915. Nessa obra, Kafka descreve o caixeiro viajante Gregor Samsa, que abandona as suas vontades e desejos para sustentar a fam\u00edlia e pagar a d\u00edvida dos pais"
     }
 ]

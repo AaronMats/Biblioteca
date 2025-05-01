@@ -101,7 +101,7 @@ class Registros:
                     dados_exist = json.load(arquivo)
 
                 for livro in dados_exist:
-                    if livro.get("Nome", "").strip().lower() == titulo.lower() and livro.get("Edi\u00e7\u00e3o", "") .strip() == edicao.strip():
+                    if livro.get("Nome", "").strip().lower() == titulo.lower() and livro.get("Edição", "") .strip() == edicao.strip():
                         return False,'Este livro com mesma ediçao ja esta cadastrado.'
             else:
                 dados_exist = []

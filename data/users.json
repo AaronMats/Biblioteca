@@ -24,18 +24,6 @@
         "quantidade Alugada": []
     },
     {
-        "Nome": "Ciclano",
-        "CPF": "12345678999",
-        "Email": "ciclano@site.com",
-        "Telefone": "2345-6789",
-        "livros alugados": [
-            "Duna"
-        ],
-        "quantidade Alugada": [
-            1
-        ]
-    },
-    {
         "Nome": "Fulano de tal",
         "CPF": "098765432111",
         "Email": "fulano@detal.com",
@@ -62,5 +50,19 @@
         "Telefone": "36336363636",
         "livros alugados": [],
         "quantidade Alugada": []
+    },
+    {
+        "Nome": "Ciclano",
+        "CPF": "12345678999",
+        "Email": "ciclano@site.com",
+        "Telefone": "2345-6789",
+        "livros alugados": [
+            "Duna",
+            "A Metamorfose"
+        ],
+        "quantidade Alugada": [
+            1,
+            1
+        ]
     }
 ]
