@@ -6,6 +6,8 @@ from tkinter import messagebox
 from tools.Registros import Registros
 from tools.Alugar import Alugar
 from tools.Devolver import Devolver
+from PIL import Image, ImageTk
+from customtkinter import CTkImage
 
 def combobox_callback(choice):
     print("combobox dropdown clicked:", choice)
@@ -91,8 +93,25 @@ def tabela_usuarios(user_json):
             return json.load(arquivo)
     except (FileExistsError, json.JSONDecodeError):
         return[]
+    
+def abrir_tela_admin_v():
+    frame_admin = ctk.CTkFrame(master= screen)
+    frame_admin.pack(fill='both', expand=True)
 
+    caminho_logo = os.path.join(os.path.dirname(__file__), "assets", "kixw0iv01jib1.jpg")
 
+    imagem = Image.open(caminho_logo)
+    imagem = CTkImage(Image.open(caminho_logo),size=(200,200))
+    imagem_tk = ImageTk.PhotoImage(imagem)
+    label_img = ctk.CTkLabel(master=frame_admin, image=imagem_tk, text="")
+    label_img.image = imagem_tk
+    label_img.pack(pady= 20)
+
+    label_nome = ctk.CTkLabel(master=frame_admin, text="Bibliotec", font=("Roboto", 24, "bold"))
+    label_nome.pack(pady=10)
+
+    botao_voltar = ctk.CTkButton(master=frame_admin, text="Voltar", command=mostrar_tela_login)
+    botao_voltar.pack(fill='both', expand=True)
 
 # Autenticação de login
 def login_autent(event=None):
@@ -108,8 +127,13 @@ def login_autent(event=None):
 
         for admin in admins:
             if admin["Email"] == email and admin["Senha"] == senha_segura:
-                frame_login.pack_forget()
-                frame_principal.pack(fill='both', expand=True)
+               
+                if admin["Email"] == "vegetalendo@email.com":
+                    frame_login.pack_forget()
+                    abrir_tela_admin_v() 
+                else:
+                    frame_login.pack_forget()
+                    frame_principal.pack(fill='both', expand=True)
                 return 
         messagebox.showerror("ERROR", "Email e/ou senha inválido(s)")
     except FileNotFoundError:
