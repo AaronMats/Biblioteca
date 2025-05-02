@@ -42,18 +42,18 @@ class Registros:
                     if userAdm.get("Email", "").strip() == email.strip():
                         return False,'Administrador com mesmo email ja esta cadastrado.'
             else:
-                dados_json_exist = []
+                dados_exist = []
         except json.JSONDecodeError:
-            dados_json_exist = []
+            dados_exist = []
         except Exception as e:
             return False, f"Error: {e}"
             
 
-        dados_json_exist.append(adm_novo)
+        dados_exist.append(adm_novo)
 
         try:
             with open(dados_json, "w", encoding="utf-8") as arquivo:
-                json.dump(dados_json_exist, arquivo, indent= 4)
+                json.dump(dados_exist, arquivo, indent= 4)
             return True, "Administrador cadastrado com sucesso!"
         except Exception as e:
             return False, "Erro ao registrar Administrador\nErro: {e}"
@@ -146,9 +146,9 @@ class Registros:
         try:
             if os.path.exists(usuario_json) and os.path.getsize(usuario_json) > 0:
                 with open(usuario_json, "r", encoding="utf-8") as arquivo:
-                    dados_exist = json.load(arquivo)
+                    usuarios_exist = json.load(arquivo)
 
-                for userAdm in dados_exist:
+                for userAdm in usuarios_exist:
                     if userAdm.get("CPF", "").strip().lower() == cpf.lower():
                         return False,'Usuario com mesmo CPF ja esta cadastrado.'
                     if userAdm.get("Email", "").strip() == email.strip():

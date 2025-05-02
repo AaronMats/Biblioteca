@@ -76,5 +76,11 @@
         "CPF": "09876543211",
         "Email": "pedro@email.com",
         "Senha": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5"
+    },
+    {
+        "Nome": "Vegeta Lendo",
+        "CPF": "27591017921",
+        "Email": "vegetalendo@email.com",
+        "Senha": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5"
     }
 ]
