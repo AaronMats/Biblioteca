@@ -40,3 +40,7 @@ class Deletar:
 
         try:
             with open(dados_admin_json, "w", encoding="utf-8") as arquivo:
+                json.dump(dados_atualizados, arquivo, indent=4)
+                return True, f"Administrador {nome_admin} foi deletado!"
+        except Exception as e:
+            return False, f"Erro ao salvar o arquivo!\nERROR: {e}"
