@@ -88,12 +88,11 @@ def tabela_usuarios(user_json):
     user_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
     try:
         with open(user_json, 'r', encoding='utf-8') as arquivo:
-            user = json.load(arquivo)
-            return user
-    except FileExistsError:
-        return []
-    except json.JSONDecodeError:
-        return []
+            return json.load(arquivo)
+    except (FileExistsError, json.JSONDecodeError):
+        return[]
+
+
 
 # Autenticação de login
 def login_autent(event=None):
@@ -282,15 +281,13 @@ botao_principal_AluDev.place(x=530, y=100)
 botao_principal_usuarios = ctk.CTkButton(frame_principal, text="Usuarios", font=("Roboto", 14), command=mostar_usuarios)
 botao_principal_usuarios.place(x=330, y=150)
 
-
+#caixa de livros
 livros = tabela_livros("books.json")
-
-
-info_livro = ["Título", "Edição", "Genêro", "Autor", "Quantidade" ]
+cabecalho = ["Título", "Edição", "Genêro", "Autor", "Quantidade" ]
 caixa_de_livros = ctk.CTkScrollableFrame(frame_principal, width=600, height=300)
 caixa_de_livros.place(x=100,y=210)
 
-for coluna, titulo in enumerate(info_livro):
+for coluna, titulo in enumerate(cabecalho):
     tabela_org = ctk.CTkLabel(
         caixa_de_livros,
         text = titulo, 
@@ -333,11 +330,104 @@ for linha, pessoa in enumerate(livros, start=1):
         height=30
     ).grid(row=linha, column=4, padx=2, pady=2)
 
-for col in range(len(info_livro)):
+for col in range(len(cabecalho)):
     caixa_de_livros.grid_columnconfigure(col, weight=1)
     
 botao_principal_sair= ctk.CTkButton(frame_principal, text= "Sair", command= mostrar_tela_login, font= ("Roboto",14))
 botao_principal_sair.place(x=650, y=550)
+
+#Tela de Usuários
+tela_de_usuarios= ctk.CTkFrame(screen)
+texto_tela_usuarios = ctk.CTkLabel(tela_de_usuarios, text="Usuários Cadastrados", font= ("Roboto",24)).pack(pady=20)
+voltar_user_principal = ctk.CTkButton(tela_de_usuarios, text="Voltar", command= mostrar_tela_principal)
+voltar_user_principal.place(x=650,y= 550)
+remover_usuario = ctk.CTkButton(tela_de_usuarios, text= "Remover usuário")
+remover_usuario.place(x=10, y=550)
+cabecalho = ["Nome", "CPF", "Email", "Telefone", "Alugados", "Quantidade"]
+users = tabela_usuarios("users.json")
+caixa_de_usuarios = ctk.CTkScrollableFrame(tela_de_usuarios, width=800, height=200)
+caixa_de_usuarios.place(x=0,y=80)
+
+for coluna, titulo in enumerate(cabecalho):
+    cabecalho_texto = ctk.CTkLabel(
+        caixa_de_usuarios,
+        text = titulo, 
+        font=("Arial", 14),
+        width=150,
+        height=30
+    )
+    cabecalho_texto.grid(row=0, column=coluna, padx=5,pady=5)
+for linha, pessoa in enumerate(users, start=1):
+    livros = pessoa.get("livros alugados", [])
+    livros_usuarios = ", ".join(livros) if isinstance(livros, list) else str(livros)
+    quantidade_de_livros = pessoa.get("quantidade Alugada", 0)
+    if isinstance(quantidade_de_livros, list):
+        quantidade_livro_alugada = sum(quantidade_de_livros)
+    
+    ctk.CTkLabel(
+        caixa_de_usuarios,
+        text=pessoa.get("Nome", ""),
+        wraplength=80, 
+        width= 150,
+        height=30
+    ).grid(row=linha, column=0, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_usuarios,
+        text=pessoa.get("CPF", ""),
+        width= 90,
+        height=30
+    ).grid(row=linha, column=1, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_usuarios,
+        text=pessoa.get("Email", ""),
+        width= 150,
+        height=30
+    ).grid(row=linha, column=2, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_usuarios,
+        text=pessoa.get("Telefone", ""),
+        wraplength=100,
+        width= 120,
+        height=30
+    ).grid(row=linha, column=3, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_usuarios,
+        text=livros_usuarios,
+        wraplength=80,
+        width= 120,
+        height=30
+    ).grid(row=linha, column=4, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_usuarios,
+        text=str(quantidade_livro_alugada),
+        wraplength=80,
+        width= 120,
+        height=30
+    ).grid(row=linha, column=5, padx=2, pady=2)
+
+for col in range(len(cabecalho)):
+    caixa_de_usuarios.grid_columnconfigure(col, weight=1)
+#combobox para remover selecionar e remover usuário
+texto_box_usuarios= ctk.CTkLabel(tela_de_usuarios,text="Usuários",font=("Roboto", 14))
+texto_box_usuarios.place(x=300, y=320)
+sucessoU, users_box = carregar_Users()
+if sucessoU:
+    box_usuarios = [f"{user["Nome"]}" for user in users_box]
+    combobox_usuarios = ctk.CTkComboBox(
+        master= tela_de_usuarios,
+        values=box_usuarios,
+        width=200,
+        height=30,
+        dropdown_fg_color="#2b2b2b",
+        dropdown_hover_color="#3b3b3b",
+        button_color="#2E64FE",
+        state="readonly"
+    )
+    combobox_usuarios.place(x=300,y=350)
+    
+else:
+    messagebox.showerror("ERRO", users_box)
+
 
 # fram 3: Tela de cadastro de ususários
 frame_Ucadastro = ctk.CTkFrame(screen)
@@ -482,60 +572,6 @@ botao_Alug_Devol_Voltar.place(x=650,y= 550)
 
 #Frame 7: tela de usuários
 
-tela_de_usuarios= ctk.CTkFrame(screen)
-users = tabela_usuarios("users.json")
-info_users = ["Nome", "CPF", "Email", "Telefone", "Alugados"]
-caixa_de_usuarios = ctk.CTkScrollableFrame(tela_de_usuarios, width=600, height=300)
-caixa_de_usuarios.place(x=100,y=100)
-
-for coluna, user in enumerate(info_users):
-    tabela_user = ctk.CTkLabel(
-        caixa_de_usuarios,
-        text = user, 
-        font=("Arial", 14),
-        width=150,
-        height=400
-    )
-    tabela_org.grid(row=0, column=coluna, padx=5,pady=5)
-for linha, pessoa in enumerate(users, start=1):
-    ctk.CTkLabel(
-        caixa_de_usuarios,
-        text=pessoa["Nome"],
-        wraplength=80,
-        width= 200,
-        height=30
-    ).grid(row=linha, column=0, padx=4, pady=2)
-    ctk.CTkLabel(
-        caixa_de_usuarios,
-        text=pessoa["CPF"],
-        width= 80,
-        height=30
-    ).grid(row=linha, column=1, padx=2, pady=2)
-    ctk.CTkLabel(
-        caixa_de_usuarios,
-        text=pessoa["Email"],
-        width= 120,
-        height=30
-    ).grid(row=linha, column=2, padx=2, pady=2)
-    ctk.CTkLabel(
-        caixa_de_usuarios,
-        text=pessoa["Telefone"],
-        wraplength=100,
-        width= 120,
-        height=30
-    ).grid(row=linha, column=3, padx=2, pady=2)
-    ctk.CTkLabel(
-        caixa_de_usuarios,
-        text=pessoa["livros alugados"],
-        wraplength=70,
-        width= 120,
-        height=30
-    ).grid(row=linha, column=4, padx=2, pady=2)
-
-for col in range(len(info_users)):
-    caixa_de_usuarios.grid_columnconfigure(col, weight=1)
-voltar_user_principal = ctk.CTkButton(tela_de_usuarios, text="Voltar", command= mostrar_tela_principal)
-voltar_user_principal.place(x=650,y= 550)
 
 mostrar_tela_login()
 
