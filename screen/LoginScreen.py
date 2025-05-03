@@ -296,21 +296,21 @@ botao_login_entrar.pack(padx=10, pady=2)
 # fram 2: Tela principal
 frame_principal = ctk.CTkFrame(screen)
 texto_apresentacao = ctk.CTkLabel(frame_principal, text= "Bem vindo a Bibliotec", font= ("Roboto",24))
-texto_apresentacao.place(x=20, y=20)
+texto_apresentacao.pack(padx=10, pady=10)
 botao_principal_adUsuario = ctk.CTkButton(frame_principal, text= "Cadastrar Usuario", font= ("Roboto",14), command= mostar_tela_Ucadastro)
-botao_principal_adUsuario.place(x=130 ,y=100)
+botao_principal_adUsuario.place(relx=0.1, rely=0.1, relwidth=0.20, relheight=0.05)
 botao_principal_adLivro = ctk.CTkButton(frame_principal, text="Cadastrar livro", font= ("Roboto",14), command=mostrar_tela_Lcadastro)
-botao_principal_adLivro.place(x=330,y=100)
+botao_principal_adLivro.place(relx=0.4, rely=0.1, relwidth=0.20, relheight=0.05)
 botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Livro", font= ("Roboto",14), command=mostrar_tela_Alug_Devol)
-botao_principal_AluDev.place(x=530, y=100)
+botao_principal_AluDev.place(relx=0.7, rely=0.1, relwidth=0.20, relheight=0.05)
 botao_principal_usuarios = ctk.CTkButton(frame_principal, text="Usuarios", font=("Roboto", 14), command=mostar_usuarios)
-botao_principal_usuarios.place(x=330, y=150)
+botao_principal_usuarios.place(relx=0.4, rely=0.2, relwidth=0.20, relheight=0.05)
 
 #caixa de livros
 livros = tabela_livros("books.json")
 cabecalho = ["Título", "Edição", "Genêro", "Autor", "Quantidade" ]
 caixa_de_livros = ctk.CTkScrollableFrame(frame_principal, width=600, height=300)
-caixa_de_livros.place(x=100,y=210)
+caixa_de_livros.place(relx=0.25, rely=0.3, relwidth=0.5, relheight=0.5)
 
 for coluna, titulo in enumerate(cabecalho):
     tabela_org = ctk.CTkLabel(
@@ -359,7 +359,7 @@ for col in range(len(cabecalho)):
     caixa_de_livros.grid_columnconfigure(col, weight=1)
     
 botao_principal_sair= ctk.CTkButton(frame_principal, text= "Sair", command= mostrar_tela_login, font= ("Roboto",14))
-botao_principal_sair.place(x=650, y=550)
+botao_principal_sair.place(relx=0.75, rely=0.9, relwidth=0.20, relheight=0.05)
 
 #Tela de Usuários
 tela_de_usuarios= ctk.CTkFrame(screen)
