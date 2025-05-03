@@ -359,19 +359,19 @@ for col in range(len(cabecalho)):
     caixa_de_livros.grid_columnconfigure(col, weight=1)
     
 botao_principal_sair= ctk.CTkButton(frame_principal, text= "Sair", command= mostrar_tela_login, font= ("Roboto",14))
-botao_principal_sair.place(relx=0.75, rely=0.9, relwidth=0.20, relheight=0.05)
+botao_principal_sair.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
 
 #Tela de Usuários
 tela_de_usuarios= ctk.CTkFrame(screen)
 texto_tela_usuarios = ctk.CTkLabel(tela_de_usuarios, text="Usuários Cadastrados", font= ("Roboto",24)).pack(pady=20)
 voltar_user_principal = ctk.CTkButton(tela_de_usuarios, text="Voltar", command= mostrar_tela_principal)
-voltar_user_principal.place(x=650,y= 550)
+voltar_user_principal.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
 remover_usuario = ctk.CTkButton(tela_de_usuarios, text= "Remover usuário")
-remover_usuario.place(x=10, y=550)
+remover_usuario.place(relx=0.02, rely=0.9, relwidth=0.17, relheight=0.05)
 cabecalho = ["Nome", "CPF", "Email", "Telefone", "Alugados", "Quantidade"]
 users = tabela_usuarios("users.json")
 caixa_de_usuarios = ctk.CTkScrollableFrame(tela_de_usuarios, width=800, height=200)
-caixa_de_usuarios.place(x=0,y=80)
+caixa_de_usuarios.pack(pady=20)
 
 for coluna, titulo in enumerate(cabecalho):
     cabecalho_texto = ctk.CTkLabel(
@@ -432,9 +432,10 @@ for linha, pessoa in enumerate(users, start=1):
 
 for col in range(len(cabecalho)):
     caixa_de_usuarios.grid_columnconfigure(col, weight=1)
+
 #combobox para remover selecionar e remover usuário
 texto_box_usuarios= ctk.CTkLabel(tela_de_usuarios,text="Usuários",font=("Roboto", 14))
-texto_box_usuarios.place(x=300, y=320)
+texto_box_usuarios.pack(pady=20)
 sucessoU, users_box = carregar_Users()
 if sucessoU:
     box_usuarios = [f"{user["Nome"]}" for user in users_box]
@@ -448,7 +449,7 @@ if sucessoU:
         button_color="#2E64FE",
         state="readonly"
     )
-    combobox_usuarios.place(x=300,y=350)
+    combobox_usuarios.pack(pady=20)
     
 else:
     messagebox.showerror("ERRO", users_box)
