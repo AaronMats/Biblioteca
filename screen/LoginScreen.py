@@ -98,20 +98,20 @@ def abrir_tela_admin_v():
     frame_admin = ctk.CTkFrame(master= screen)
     frame_admin.pack(fill='both', expand=True)
 
-    caminho_logo = os.path.join(os.path.dirname(__file__), "assets", "kixw0iv01jib1.jpg")
+    caminho_logo = os.path.join(os.path.dirname(__file__), "../assets", "kixw0iv01jib1.jpg")
 
     imagem = Image.open(caminho_logo)
-    imagem = CTkImage(Image.open(caminho_logo),size=(200,200))
-    imagem_tk = ImageTk.PhotoImage(imagem)
-    label_img = ctk.CTkLabel(master=frame_admin, image=imagem_tk, text="")
-    label_img.image = imagem_tk
+    
+    imagem_ctk = CTkImage(light_image=imagem, dark_image=imagem, size=(150,150))
+    label_img = ctk.CTkLabel(master=frame_admin, image=imagem_ctk, text="")
+    label_img.image = imagem_ctk
     label_img.pack(pady= 20)
 
     label_nome = ctk.CTkLabel(master=frame_admin, text="Bibliotec", font=("Roboto", 24, "bold"))
     label_nome.pack(pady=10)
 
     botao_voltar = ctk.CTkButton(master=frame_admin, text="Voltar", command=mostrar_tela_login)
-    botao_voltar.pack(fill='both', expand=True)
+    botao_voltar.pack(pady=20)
 
 # Autenticação de login
 def login_autent(event=None):
