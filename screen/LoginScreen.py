@@ -27,6 +27,7 @@ def mostar_usuarios():
     tela_de_usuarios.pack(fill="both", expand=True)
 
 def mostrar_tela_login():
+    frame_admin.pack_forget()
     frame_principal.pack_forget()
     frame_login.pack(fill='both', expand=True)
     screen.unbind("<Return>") #recurso para o enter funcionar 
@@ -95,7 +96,6 @@ def tabela_usuarios(user_json):
         return[]
     
 def abrir_tela_admin_v():
-    frame_admin = ctk.CTkFrame(master= screen)
     frame_admin.pack(fill='both', expand=True)
 
     caminho_logo = os.path.join(os.path.dirname(__file__), "../assets", "kixw0iv01jib1.jpg")
@@ -279,7 +279,7 @@ screen.geometry('800x600')
 #     screen.geometry('800x600')
 
 # fram 1: Tela de login
-frame_login = ctk.CTkFrame(screen)
+frame_login = ctk.CTkFrame(master=screen)
 #texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
 #texto_login.pack(padx=10, pady=10)
 texto_login = ctk.CTkLabel(frame_login, text="Login",font= ("Roboto",25))
@@ -594,6 +594,7 @@ botao_devolver.place(x=20 ,y= 550)
 botao_Alug_Devol_Voltar = ctk.CTkButton(frame_Alug_Devol, text="Voltar", command= mostrar_tela_principal)
 botao_Alug_Devol_Voltar.place(x=650,y= 550)
 
+frame_admin = ctk.CTkFrame(master= screen) #frame do admin secreto
 #Frame 7: tela de usuários
 
 
