@@ -261,23 +261,23 @@ screen = ctk.CTk()
 screen.title('BiblioTec')
 screen.geometry('800x600')
 screen.minsize(width=500, height=350)
-# screen.state('zoomed')# se der errado pode tirar
-# forcar_zoom = True# se der errado pode tirar
+screen.state('zoomed')# se der errado pode tirar
+forcar_zoom = True# se der errado pode tirar
 
-# cont = 0# se der errado pode tirar
+cont = 0# se der errado pode tirar
 
-# def forcar_maximizado():# se der errado pode tirar
-#     global cont
-#     if forcar_zoom and cont < 10:
-#         screen.state('zoomed')
-#         cont += 1
-#         screen.after(500, forcar_maximizado)
+def forcar_maximizado():# se der errado pode tirar
+    global cont
+    if forcar_zoom and cont < 10:
+        screen.state('zoomed')
+        cont += 1
+        screen.after(500, forcar_maximizado)
 
-# def sair_tela_cheia(event=None):# se der errado pode tirar
-#     global forcar_zoom
-#     forcar_zoom = False
-#     screen.state("normal")
-#     screen.geometry('800x600')
+def sair_tela_cheia(event=None):# se der errado pode tirar
+    global forcar_zoom
+    forcar_zoom = False
+    screen.state("normal")
+    screen.geometry('800x600')
 
 # fram 1: Tela de login
 frame_login = ctk.CTkFrame(master=screen)
@@ -545,10 +545,10 @@ botao_Lcadastro_voltar.pack(padx=10, pady=10)
 #frame 6: Tela de alugar e devolver
 frame_Alug_Devol = ctk.CTkFrame(screen)
 texto_Alug_Devol_titulo = ctk.CTkLabel(frame_Alug_Devol, text = "Alugar ou Devolver",font=("Roboto", 24))
-texto_Alug_Devol_titulo.place(x=20 , y= 20)
+texto_Alug_Devol_titulo.pack(pady=20)
 
 texto_box_usuarios= ctk.CTkLabel(frame_Alug_Devol,text="Usuários",font=("Roboto", 14))
-texto_box_usuarios.place(x=20 , y= 60)
+texto_box_usuarios.pack(pady=20)
 sucessoU, users_box = carregar_Users()
 if sucessoU:
     box_usuarios = [f"{user["Nome"]}" for user in users_box]
@@ -562,13 +562,13 @@ if sucessoU:
         button_color="#2E64FE",
         state="readonly"
     )
-    combobox_usuarios.place(x=20 , y= 100)
+    combobox_usuarios.pack(pady=20)
     
 else:
     messagebox.showerror("ERRO", users_box)
 
 texto_box_livro= ctk.CTkLabel(frame_Alug_Devol,text="Livros",font=("Roboto", 14))
-texto_box_livro.place(x=400 , y= 60)
+texto_box_livro.pack(pady=20)
 sucessoL, books_box = carregar_Books()
 if sucessoL:
     box_livros = [f"{book["Nome"]}" for book in books_box]
@@ -584,17 +584,17 @@ if sucessoL:
     )
 else:
     messagebox.showerror("ERRO", books_box)
-combobox_livros.place(x=400 ,y= 100)
+combobox_livros.pack(pady= 20)
 texto_quantidade_livro = ctk.CTkLabel(frame_Alug_Devol, text= "Quantidade:", font= ("Roboto", 14))
-texto_quantidade_livro.place(x=20,y=430)
+texto_quantidade_livro.place(relx=0.02, rely=0.55, relwidth=0.1, relheight=0.05)
 quantidade_livro = ctk.CTkEntry(frame_Alug_Devol, placeholder_text= "0", width= 100)
-quantidade_livro.place(x=20 ,y= 470)
+quantidade_livro.place(relx=0.02, rely=0.6, relwidth=0.1, relheight=0.05)
 botao_aluagar = ctk.CTkButton(frame_Alug_Devol, text = "Alugar",font=("Roboto", 14), command=alugar_livro)
-botao_aluagar.place(x=20 ,y= 510)
+botao_aluagar.place(relx=0.02, rely=0.8, relwidth=0.15, relheight=0.05)
 botao_devolver = ctk.CTkButton(frame_Alug_Devol, text = "Devolver",font=("Roboto", 14), command=devolver_livro)
-botao_devolver.place(x=20 ,y= 550)
+botao_devolver.place(relx=0.02, rely=0.9, relwidth=0.15, relheight=0.05)
 botao_Alug_Devol_Voltar = ctk.CTkButton(frame_Alug_Devol, text="Voltar", command= mostrar_tela_principal)
-botao_Alug_Devol_Voltar.place(x=650,y= 550)
+botao_Alug_Devol_Voltar.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
 
 frame_admin = ctk.CTkFrame(master= screen) #frame do admin secreto
 #Frame 7: tela de usuários
@@ -602,8 +602,8 @@ frame_admin = ctk.CTkFrame(master= screen) #frame do admin secreto
 
 mostrar_tela_login()
 
-# forcar_maximizado()# se der errado pode tirar
+forcar_maximizado()# se der errado pode tirar
 
-# screen.bind("<Escape>", sair_tela_cheia)# se der errado pode tirar
+screen.bind("<Escape>", sair_tela_cheia)# se der errado pode tirar
 
 screen.mainloop()
