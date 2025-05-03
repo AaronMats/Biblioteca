@@ -260,6 +260,7 @@ ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
 screen.title('BiblioTec')
 screen.geometry('800x600')
+screen.minsize(width=500, height=350)
 # screen.state('zoomed')# se der errado pode tirar
 # forcar_zoom = True# se der errado pode tirar
 
