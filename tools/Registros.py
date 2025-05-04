@@ -74,7 +74,7 @@ class Registros:
                 raise ValueError('Autor precisa conter pelo menos uma letra.')
             if not genero.strip():#verifica se o genero esta vazio
                 raise ValueError('Genero nao pode ser vazio.')
-            if not all(parte.isalpha() for parte in genero.strip()):#verifica se o usuario colocou numeros no genero
+            if not any(char.isalpha() for char in genero):#verifica se o usuario colocou numeros no genero
                 raise ValueError('Genero nao pode conter numeros')
             if not edicao.strip():#verifica se a ediçao esta vazia
                 raise ValueError('Ediçao nao pode ser vazia.')
