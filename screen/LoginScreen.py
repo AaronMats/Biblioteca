@@ -260,7 +260,7 @@ ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
 screen.title('BiblioTec')
 screen.geometry('800x600')
-screen.minsize(width=500, height=350)
+screen.minsize(width=800, height=350)
 screen.state('zoomed')# se der errado pode tirar
 forcar_zoom = True# se der errado pode tirar
 
@@ -271,7 +271,7 @@ def forcar_maximizado():# se der errado pode tirar
     if forcar_zoom and cont < 10:
         screen.state('zoomed')
         cont += 1
-        screen.after(500, forcar_maximizado)
+        screen.after(150, forcar_maximizado)
 
 def sair_tela_cheia(event=None):# se der errado pode tirar
     global forcar_zoom
@@ -371,7 +371,7 @@ remover_usuario.place(relx=0.02, rely=0.9, relwidth=0.17, relheight=0.05)
 cabecalho = ["Nome", "CPF", "Email", "Telefone", "Alugados", "Quantidade"]
 users = tabela_usuarios("users.json")
 caixa_de_usuarios = ctk.CTkScrollableFrame(tela_de_usuarios, width=800, height=200)
-caixa_de_usuarios.pack(pady=20)
+caixa_de_usuarios.place(relx=0, rely=0.10, relwidth=1, relheight=0.5)
 
 for coluna, titulo in enumerate(cabecalho):
     cabecalho_texto = ctk.CTkLabel(
@@ -435,7 +435,7 @@ for col in range(len(cabecalho)):
 
 #combobox para remover selecionar e remover usuário
 texto_box_usuarios= ctk.CTkLabel(tela_de_usuarios,text="Usuários",font=("Roboto", 14))
-texto_box_usuarios.pack(pady=20)
+texto_box_usuarios.place(relx=0.40, rely=0.64, relwidth=0.17, relheight=0.05)
 sucessoU, users_box = carregar_Users()
 if sucessoU:
     box_usuarios = [f"{user["Nome"]}" for user in users_box]
@@ -449,7 +449,7 @@ if sucessoU:
         button_color="#2E64FE",
         state="readonly"
     )
-    combobox_usuarios.pack(pady=20)
+    combobox_usuarios.place(relx=0.40, rely=0.70, relwidth=0.17, relheight=0.05)
     
 else:
     messagebox.showerror("ERRO", users_box)
