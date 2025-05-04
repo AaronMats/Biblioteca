@@ -548,7 +548,7 @@ texto_Alug_Devol_titulo = ctk.CTkLabel(frame_Alug_Devol, text = "Alugar ou Devol
 texto_Alug_Devol_titulo.pack(pady=20)
 
 texto_box_usuarios= ctk.CTkLabel(frame_Alug_Devol,text="Usuários",font=("Roboto", 14))
-texto_box_usuarios.pack(pady=20)
+texto_box_usuarios.place(relx=0.25, rely=0.20, relwidth=0.20, relheight=0.05)
 sucessoU, users_box = carregar_Users()
 if sucessoU:
     box_usuarios = [f"{user["Nome"]}" for user in users_box]
@@ -562,13 +562,13 @@ if sucessoU:
         button_color="#2E64FE",
         state="readonly"
     )
-    combobox_usuarios.pack(pady=20)
+    combobox_usuarios.place(relx=0.25, rely=0.26, relwidth=0.20, relheight=0.05)
     
 else:
     messagebox.showerror("ERRO", users_box)
 
 texto_box_livro= ctk.CTkLabel(frame_Alug_Devol,text="Livros",font=("Roboto", 14))
-texto_box_livro.pack(pady=20)
+texto_box_livro.place(relx=0.55, rely=0.20, relwidth=0.20, relheight=0.05)
 sucessoL, books_box = carregar_Books()
 if sucessoL:
     box_livros = [f"{book["Nome"]}" for book in books_box]
@@ -584,11 +584,11 @@ if sucessoL:
     )
 else:
     messagebox.showerror("ERRO", books_box)
-combobox_livros.pack(pady= 20)
+combobox_livros.place(relx=0.55, rely=0.26, relwidth=0.20, relheight=0.05)
 texto_quantidade_livro = ctk.CTkLabel(frame_Alug_Devol, text= "Quantidade:", font= ("Roboto", 14))
-texto_quantidade_livro.place(relx=0.02, rely=0.55, relwidth=0.1, relheight=0.05)
+texto_quantidade_livro.place(relx=0.45, rely=0.36, relwidth=0.1, relheight=0.05)
 quantidade_livro = ctk.CTkEntry(frame_Alug_Devol, placeholder_text= "0", width= 100)
-quantidade_livro.place(relx=0.02, rely=0.6, relwidth=0.1, relheight=0.05)
+quantidade_livro.place(relx=0.45, rely=0.42, relwidth=0.1, relheight=0.05)
 botao_aluagar = ctk.CTkButton(frame_Alug_Devol, text = "Alugar",font=("Roboto", 14), command=alugar_livro)
 botao_aluagar.place(relx=0.02, rely=0.8, relwidth=0.15, relheight=0.05)
 botao_devolver = ctk.CTkButton(frame_Alug_Devol, text = "Devolver",font=("Roboto", 14), command=devolver_livro)
