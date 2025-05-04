@@ -310,7 +310,7 @@ botao_principal_usuarios.place(relx=0.4, rely=0.2, relwidth=0.20, relheight=0.05
 livros = tabela_livros("books.json")
 cabecalho = ["Título", "Edição", "Genêro", "Autor", "Quantidade" ]
 caixa_de_livros = ctk.CTkScrollableFrame(frame_principal, width=600, height=300)
-caixa_de_livros.place(relx=0.25, rely=0.3, relwidth=0.5, relheight=0.5)
+caixa_de_livros.place(relx=0, rely=0.3, relwidth=1, relheight=0.5)
 
 for coluna, titulo in enumerate(cabecalho):
     tabela_org = ctk.CTkLabel(
@@ -326,7 +326,7 @@ for linha, pessoa in enumerate(livros, start=1):
         caixa_de_livros,
         text=pessoa["Nome"],
         wraplength=100,
-        width= 200,
+        width= 120,
         height=30
     ).grid(row=linha, column=0, padx=4, pady=2)
     ctk.CTkLabel(
