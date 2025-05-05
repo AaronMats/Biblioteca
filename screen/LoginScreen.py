@@ -331,7 +331,7 @@ screen = ctk.CTk()
 screen.iconbitmap(os.path.join(os.path.dirname(__file__),"../assets","1746464492671.ico"))
 screen.title('BiblioTec')
 screen.geometry('800x600')
-screen.minsize(width=800, height=350)
+screen.minsize(width=750, height=500)
 screen.state('zoomed')# se der errado pode tirar
 forcar_zoom = True# se der errado pode tirar
 
@@ -582,7 +582,7 @@ for linha, pessoa in enumerate(users, start=1):
 for col in range(len(cabecalho)):
     caixa_de_usuarios.grid_columnconfigure(col, weight=1)
 
-#combobox para remover selecionar e remover usuário
+#combobox para remover selecionar e remover clientes
 texto_box_usuarios= ctk.CTkLabel(tela_de_usuarios,text="Clientes",font=("Roboto", 14))
 texto_box_usuarios.place(relx=0.40, rely=0.64, relwidth=0.17, relheight=0.05)
 sucessoU, users_box = carregar_Users()
@@ -686,7 +686,7 @@ else:
 
 
 
-# fram 3: Tela de cadastro de ususários
+# fram 3: Tela de cadastro de clientes
 frame_Ucadastro = ctk.CTkFrame(screen)
 texto_Ucadastro = ctk.CTkLabel(frame_Ucadastro, text="Cadastrar novo cliente:", font=("Roboto", 24))
 texto_Ucadastro.place(relx=0.30, rely=0.01, relwidth=0.40, relheight=0.09)
@@ -711,7 +711,7 @@ botao_Ucadastro_registrar.place(relx=0.40, rely=0.56, relwidth=0.20, relheight=0
 botao_Acadastro = ctk.CTkButton(frame_Ucadastro, text= "Cadastrar Administrador", font = ("Roboto", 14), command = mostrar_tela_Acadastro)
 botao_Acadastro.place(relx=0.39, rely=0.62, relwidth=0.22, relheight=0.05)
 botao_Ucadastro_voltar = ctk.CTkButton(frame_Ucadastro, text="Voltar",font=("Roboto", 14), command=mostrar_tela_principal)
-botao_Ucadastro_voltar.place(relx=0.40, rely=0.68, relwidth=0.20, relheight=0.05)
+botao_Ucadastro_voltar.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
 
 #frame 4: tela de cadastrar administrador
 frame_Acadastro = ctk.CTkFrame(screen)
@@ -738,7 +738,7 @@ botao_Acadastro_registrar.place(relx=0.40, rely=0.56, relwidth=0.20, relheight=0
 botao_Acadastro_voltar_principal = ctk.CTkButton(frame_Acadastro, text="Tela principal",font=("Roboto", 14), command= mostrar_tela_principal)
 botao_Acadastro_voltar_principal.place(relx=0.40, rely=0.62, relwidth=0.20, relheight=0.05)
 botao_Acadastro_voltar = ctk.CTkButton(frame_Acadastro, text= "Voltar", font=("Roboto", 14), command=mostar_tela_Ucadastro)
-botao_Acadastro_voltar.place(relx=0.40, rely=0.68, relwidth=0.20, relheight=0.05)
+botao_Acadastro_voltar.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
 
 # fram 5: tela de cadastro de livros
 frame_Lcadastro = ctk.CTkFrame(screen)
@@ -771,7 +771,7 @@ caixa_Lcadastro_descricao.place(relx=0.38, rely=0.74, relwidth=0.24, relheight=0
 botao_Lcadastro_registrar = ctk.CTkButton(frame_Lcadastro, text="Registrar", command=registrar_livro)
 botao_Lcadastro_registrar.place(relx=0.40, rely=0.80, relwidth=0.20, relheight=0.05)
 botao_Lcadastro_voltar = ctk.CTkButton(frame_Lcadastro, text="Voltar", command= mostrar_tela_principal)
-botao_Lcadastro_voltar.place(relx=0.40, rely=0.86, relwidth=0.20, relheight=0.05)
+botao_Lcadastro_voltar.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
 
 #frame 6: Tela de alugar e devolver
 frame_Alug_Devol = ctk.CTkFrame(screen)
