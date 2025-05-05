@@ -6,7 +6,7 @@ class Deletar:
     def deletar_usuario(nome_user):
         try:
             if not nome_user.strip():
-                raise ValueError("Usuario não selecionado.")
+                raise ValueError("Cliente não selecionado.")
             dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
         except ValueError as e:
             return False, str(e)

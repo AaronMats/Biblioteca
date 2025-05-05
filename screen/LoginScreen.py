@@ -130,13 +130,22 @@ def abrir_tela_admin_v():
 
     imagem = Image.open(caminho_logo)
     
-    imagem_ctk = CTkImage(light_image=imagem, dark_image=imagem, size=(150,150))
+    imagem_ctk = CTkImage(light_image=imagem, dark_image=imagem, size=(500,200))
     label_img = ctk.CTkLabel(master=frame_admin, image=imagem_ctk, text="")
     label_img.image = imagem_ctk
     label_img.pack(pady= 20)
 
-    label_nome = ctk.CTkLabel(master=frame_admin, text="Bibliotec", font=("Roboto", 24, "bold"))
+    label_nome = ctk.CTkLabel(master=frame_admin, text="BiblioTec (Verdadeira logo)", font=("Roboto", 24))
     label_nome.pack(pady=10)
+
+    caminho_logo1 = os.path.join(os.path.dirname(__file__), "../assets", "Screenshot_20250505-150548-321.png")
+
+    imagem1 = Image.open(caminho_logo1)
+    
+    imagem_ctk1 = CTkImage(light_image=imagem1, dark_image=imagem1, size=(500,200))
+    label_img1 = ctk.CTkLabel(master=frame_admin, image=imagem_ctk1, text="")
+    label_img1.image = imagem_ctk
+    label_img1.pack(pady= 20)
 
     botao_voltar = ctk.CTkButton(master=frame_admin, text="Voltar", command=mostrar_tela_login)
     botao_voltar.pack(pady=20)
@@ -319,6 +328,7 @@ def devolver_livro():
 ctk.set_appearance_mode('system') 
 ctk.set_default_color_theme('blue')
 screen = ctk.CTk()
+screen.iconbitmap(os.path.join(os.path.dirname(__file__),"../assets","1746464492671.ico"))
 screen.title('BiblioTec')
 screen.geometry('800x600')
 screen.minsize(width=800, height=350)
@@ -344,6 +354,14 @@ def sair_tela_cheia(event=None):# se der errado pode tirar
 frame_login = ctk.CTkFrame(master=screen)
 #texto_login = ctk.CTkLabel(frame_login, text= "Use Esc para sair da tela cheia", font= ("Candara Light Italic",24))
 #texto_login.pack(padx=10, pady=10)
+caminho_logo = os.path.join(os.path.dirname(__file__), "../assets", "1746464492671.png")
+imagem = Image.open(caminho_logo) 
+imagem_ctk = CTkImage(light_image=imagem, dark_image=imagem, size=(100,100))
+label_img = ctk.CTkLabel(master=frame_login, image=imagem_ctk, text="")
+label_img.image = imagem_ctk
+label_img.pack(pady= 20)
+label_nome = ctk.CTkLabel(master=frame_login, text="BiblioTec", font=("Roboto", 20))
+label_nome.pack(pady=20)
 texto_login = ctk.CTkLabel(frame_login, text="Login",font= ("Roboto",25))
 texto_login.pack(padx=10, pady=10)
 caixa_login_email = ctk.CTkEntry(frame_login, placeholder_text="Digite seu email", font= ("Roboto",17), width=250)
@@ -356,15 +374,15 @@ botao_login_entrar.pack(padx=10, pady=2)
 
 # fram 2: Tela principal
 frame_principal = ctk.CTkFrame(screen)
-texto_apresentacao = ctk.CTkLabel(frame_principal, text= "Bem vindo a Bibliotec", font= ("Roboto",24))
+texto_apresentacao = ctk.CTkLabel(frame_principal, text= "Bem vindo a BiblioTec", font= ("Roboto",24))
 texto_apresentacao.pack(padx=10, pady=10)
-botao_principal_adUsuario = ctk.CTkButton(frame_principal, text= "Cadastrar Usuario", font= ("Roboto",14), command= mostar_tela_Ucadastro)
+botao_principal_adUsuario = ctk.CTkButton(frame_principal, text= "Cadastrar Cliente", font= ("Roboto",14), command= mostar_tela_Ucadastro)
 botao_principal_adUsuario.place(relx=0.1, rely=0.1, relwidth=0.20, relheight=0.05)
 botao_principal_adLivro = ctk.CTkButton(frame_principal, text="Cadastrar livro", font= ("Roboto",14), command=mostrar_tela_Lcadastro)
 botao_principal_adLivro.place(relx=0.4, rely=0.1, relwidth=0.20, relheight=0.05)
 botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Livro", font= ("Roboto",14), command=mostrar_tela_Alug_Devol)
 botao_principal_AluDev.place(relx=0.7, rely=0.1, relwidth=0.20, relheight=0.05)
-botao_principal_usuarios = ctk.CTkButton(frame_principal, text="Usuarios", font=("Roboto", 14), command=mostar_usuarios)
+botao_principal_usuarios = ctk.CTkButton(frame_principal, text="Clientes", font=("Roboto", 14), command=mostar_usuarios)
 botao_principal_usuarios.place(relx=0.1, rely=0.2, relwidth=0.20, relheight=0.05)
 botao_principal_admin = ctk.CTkButton(frame_principal, text= "Administradores", font= ("Roboto", 14), command= mostrar_admins)
 botao_principal_admin.place(relx=0.4, rely=0.2, relwidth=0.20, relheight=0.05)
@@ -494,12 +512,12 @@ if sucessoU:
 else:
     messagebox.showerror("ERRO", admins_box)
 
-#Tela de Usuários
+#Tela de Clientes
 tela_de_usuarios= ctk.CTkFrame(screen)
-texto_tela_usuarios = ctk.CTkLabel(tela_de_usuarios, text="Usuários Cadastrados", font= ("Roboto",24)).pack(pady=20)
+texto_tela_usuarios = ctk.CTkLabel(tela_de_usuarios, text="Clientes Cadastrados", font= ("Roboto",24)).pack(pady=20)
 voltar_user_principal = ctk.CTkButton(tela_de_usuarios, text="Voltar", command= mostrar_tela_principal)
 voltar_user_principal.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
-remover_usuario = ctk.CTkButton(tela_de_usuarios, text= "Remover usuários", command= deletar_usuario)
+remover_usuario = ctk.CTkButton(tela_de_usuarios, text= "Remover Clientes", command= deletar_usuario)
 remover_usuario.place(relx=0.02, rely=0.9, relwidth=0.17, relheight=0.05)
 cabecalho = ["Nome", "CPF", "Email", "Telefone", "Alugados", "Quantidade"]
 users = tabela_usuarios("users.json")
@@ -567,7 +585,7 @@ for col in range(len(cabecalho)):
     caixa_de_usuarios.grid_columnconfigure(col, weight=1)
 
 #combobox para remover selecionar e remover usuário
-texto_box_usuarios= ctk.CTkLabel(tela_de_usuarios,text="Usuários",font=("Roboto", 14))
+texto_box_usuarios= ctk.CTkLabel(tela_de_usuarios,text="Clientes",font=("Roboto", 14))
 texto_box_usuarios.place(relx=0.40, rely=0.64, relwidth=0.17, relheight=0.05)
 sucessoU, users_box = carregar_Users()
 if sucessoU:
@@ -672,11 +690,11 @@ else:
 
 # fram 3: Tela de cadastro de ususários
 frame_Ucadastro = ctk.CTkFrame(screen)
-texto_Ucadastro = ctk.CTkLabel(frame_Ucadastro, text="Cadastrar novo usuário:", font=("Roboto", 14))
+texto_Ucadastro = ctk.CTkLabel(frame_Ucadastro, text="Cadastrar novo cliente:", font=("Roboto", 14))
 texto_Ucadastro.pack(padx=10, pady=10)
 texto_Ucadastro_nome = ctk.CTkLabel(frame_Ucadastro, text="Nome: ", font=("Roboto", 14))
 texto_Ucadastro_nome.pack(padx=10, pady=2)
-caixa_Ucadastro_nome = ctk.CTkEntry(frame_Ucadastro, placeholder_text="Nome do Usuario", width=300)
+caixa_Ucadastro_nome = ctk.CTkEntry(frame_Ucadastro, placeholder_text="Nome do Cliente", width=300)
 caixa_Ucadastro_nome.pack(padx=10, pady=2)
 texto_Ucadastro_cpf = ctk.CTkLabel(frame_Ucadastro, text= "CPF: ", font=("Roboto",14))
 texto_Ucadastro_cpf.pack(padx=10, pady=2)
@@ -703,7 +721,7 @@ texto_Acadastro = ctk.CTkLabel(frame_Acadastro, text="Cadastrar novo Administrad
 texto_Acadastro.pack(padx=10, pady=10)
 texto_Acadastro_nome = ctk.CTkLabel(frame_Acadastro, text="Nome: ", font=("Roboto", 14))
 texto_Acadastro_nome.pack(padx=10, pady=2)
-caixa_Acadastro_nome = ctk.CTkEntry(frame_Acadastro, placeholder_text="Nome do Usuario", width=300)
+caixa_Acadastro_nome = ctk.CTkEntry(frame_Acadastro, placeholder_text="Nome do Usuário", width=300)
 caixa_Acadastro_nome.pack(padx=10, pady=2)
 texto_Acadastro_cpf = ctk.CTkLabel(frame_Acadastro, text= "CPF: ", font=("Roboto",14))
 texto_Acadastro_cpf.pack(padx=10, pady=2)
@@ -762,7 +780,7 @@ frame_Alug_Devol = ctk.CTkFrame(screen)
 texto_Alug_Devol_titulo = ctk.CTkLabel(frame_Alug_Devol, text = "Alugar ou Devolver",font=("Roboto", 24))
 texto_Alug_Devol_titulo.pack(pady=20)
 
-texto_box_usuarios= ctk.CTkLabel(frame_Alug_Devol,text="Usuários",font=("Roboto", 14))
+texto_box_usuarios= ctk.CTkLabel(frame_Alug_Devol,text="Clientes",font=("Roboto", 14))
 texto_box_usuarios.place(relx=0.25, rely=0.20, relwidth=0.20, relheight=0.05)
 sucessoU, users_box = carregar_Users()
 if sucessoU:

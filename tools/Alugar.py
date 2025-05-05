@@ -7,13 +7,13 @@ class Alugar:
     def alugar(user_selecionado, nome_livro, quantidade_livro):
         try:
             if not user_selecionado:
-                raise ValueError('Usuario nao selecionado ou invalido.')
+                raise ValueError('Cliente não selecionado ou inválido.')
             if not nome_livro:
-                raise ValueError('Livro nao selecionado ou invalido.')
+                raise ValueError('Livro não selecionado ou invalido.')
             if quantidade_livro <= 0:
-                raise ValueError('Quantidade Invalida')
+                raise ValueError('Quantidade Inválida')
             if not quantidade_livro:
-                raise ValueError('Quantidade nao pode ser vazia')
+                raise ValueError('Quantidade não pode ser vazia')
         except ValueError as e:
             return False, str(e)
         dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
@@ -62,7 +62,7 @@ class Alugar:
             with open(dados_users_json, 'w', encoding='utf-8') as arquivo:
                 json.dump(dados_users_atualizado, arquivo, indent=4)
         except Exception as e:
-            return False, "Erro ao salvar os usuarios"
+            return False, "Erro ao salvar os clientes"
         
         return True, menssagem
 
