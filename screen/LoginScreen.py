@@ -142,13 +142,22 @@ def abrir_tela_admin_v():
 
     imagem1 = Image.open(caminho_logo1)
     
-    imagem_ctk1 = CTkImage(light_image=imagem1, dark_image=imagem1, size=(500,200))
+    imagem_ctk1 = CTkImage(light_image=imagem1, dark_image=imagem1, size=(300,150))
     label_img1 = ctk.CTkLabel(master=frame_admin, image=imagem_ctk1, text="")
     label_img1.image = imagem_ctk
-    label_img1.pack(pady= 20)
+    label_img1.place(relx= 0.3 ,rely=0.5)
+
+    caminho_logo2 = os.path.join(os.path.dirname(__file__), "../assets", "IMG-20250505-WA0052.jpg")
+
+    imagem2 = Image.open(caminho_logo2)
+    
+    imagem_ctk2 = CTkImage(light_image=imagem2, dark_image=imagem2, size=(300,300))
+    label_img2 = ctk.CTkLabel(master=frame_admin, image=imagem_ctk2, text="")
+    label_img2.image = imagem_ctk2
+    label_img2.place(relx=0.6, rely= 0.5)
 
     botao_voltar = ctk.CTkButton(master=frame_admin, text="Voltar", command=mostrar_tela_login)
-    botao_voltar.pack(pady=20)
+    botao_voltar.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
 
 # Autenticação de login
 def login_autent(event=None):
