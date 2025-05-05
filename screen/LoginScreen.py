@@ -20,11 +20,21 @@ def mostrar_tela_principal():
     frame_Alug_Devol.pack_forget()
     tela_de_usuarios.pack_forget()
     caixa_de_usuarios.pack_forget()
+    tela_de_admins.pack_forget()
+    tela_de_livros.pack_forget()
     frame_principal.pack(fill='both', expand=True)
 
 def mostar_usuarios():
     frame_principal.pack_forget()
     tela_de_usuarios.pack(fill="both", expand=True)
+
+def mostrar_admins():
+    frame_principal.pack_forget()
+    tela_de_admins.pack(fill="both", expand= True)
+
+def mostrar_livros():
+    frame_principal.pack_forget()
+    tela_de_livros.pack(fill="both", expand= True)
 
 def mostrar_tela_login():
     frame_admin.pack_forget()
@@ -66,6 +76,15 @@ def carregar_Users():
     except Exception as e:
         return False, f'ERROR: {e}'
     
+def carregar_Admins():
+    admin_json = os.path.join(os.path.dirname(__file__), '../data', 'admins.json')
+    try:
+        with open(admin_json, 'r', encoding='utf-8') as arquivo:
+            admins = json.load(arquivo)
+            return True, admins
+    except Exception as e:
+        return False, f'ERROR: {e}'
+    
 # Carregar arquivo books.json
 def carregar_Books():
     book_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
@@ -91,6 +110,14 @@ def tabela_usuarios(user_json):
     user_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
     try:
         with open(user_json, 'r', encoding='utf-8') as arquivo:
+            return json.load(arquivo)
+    except (FileExistsError, json.JSONDecodeError):
+        return[]
+
+def tabela_admin(admin_json):
+    admin_json = os.path.join(os.path.dirname(__file__), '../data', 'admins.json')
+    try:
+        with open(admin_json, 'r', encoding='utf-8') as arquivo:
             return json.load(arquivo)
     except (FileExistsError, json.JSONDecodeError):
         return[]
@@ -304,8 +331,11 @@ botao_principal_adLivro.place(relx=0.4, rely=0.1, relwidth=0.20, relheight=0.05)
 botao_principal_AluDev = ctk.CTkButton(frame_principal, text="Alugar/Devolver Livro", font= ("Roboto",14), command=mostrar_tela_Alug_Devol)
 botao_principal_AluDev.place(relx=0.7, rely=0.1, relwidth=0.20, relheight=0.05)
 botao_principal_usuarios = ctk.CTkButton(frame_principal, text="Usuarios", font=("Roboto", 14), command=mostar_usuarios)
-botao_principal_usuarios.place(relx=0.4, rely=0.2, relwidth=0.20, relheight=0.05)
-
+botao_principal_usuarios.place(relx=0.1, rely=0.2, relwidth=0.20, relheight=0.05)
+botao_principal_admin = ctk.CTkButton(frame_principal, text= "Administradores", font= ("Roboto", 14), command= mostrar_admins)
+botao_principal_admin.place(relx=0.4, rely=0.2, relwidth=0.20, relheight=0.05)
+botao_principal_livros = ctk.CTkButton(frame_principal, text= "Livros", font= ("Roboto", 14), command= mostrar_livros)
+botao_principal_livros.place(relx=0.7, rely=0.2, relwidth=0.20, relheight=0.05)
 #caixa de livros
 livros = tabela_livros("books.json")
 cabecalho = ["Título", "Edição", "Genêro", "Autor", "Quantidade" ]
@@ -360,6 +390,75 @@ for col in range(len(cabecalho)):
     
 botao_principal_sair= ctk.CTkButton(frame_principal, text= "Sair", command= mostrar_tela_login, font= ("Roboto",14))
 botao_principal_sair.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
+
+#Tela para visualizar os administradores cadastrados e para remove-los
+tela_de_admins = ctk.CTkFrame(screen)
+texto_telaAdmin = ctk.CTkLabel(tela_de_admins, text= "Administradores", font= ("Roboto",24))
+texto_telaAdmin.pack(pady=20)
+voltar_admin_principal = ctk.CTkButton(tela_de_admins, text="Voltar", command= mostrar_tela_principal)
+voltar_admin_principal.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
+
+admin = tabela_admin("admins.json")
+cabecalho = ["Nome", "CPF", "Email"]
+caixa_de_admins = ctk.CTkScrollableFrame(tela_de_admins, width=600, height=300)
+caixa_de_admins.place(relx=0, rely=0.10, relwidth=1, relheight=0.5)
+remover_admin = ctk.CTkButton(tela_de_admins, text= "Remover ADM")
+remover_admin.place(relx=0.02, rely=0.9, relwidth=0.17, relheight=0.05)
+
+for coluna, titulo in enumerate(cabecalho):
+    tabela_org = ctk.CTkLabel(
+        caixa_de_admins,
+        text = titulo, 
+        font=("Arial", 14),
+        width=120,
+        height=30
+    )
+    tabela_org.grid(row=0, column=coluna, padx=5,pady=5)
+for linha, pessoa in enumerate(admin, start=1):
+    ctk.CTkLabel(
+        caixa_de_admins,
+        text=pessoa["Nome"],
+        wraplength=100,
+        width= 120,
+        height=30
+    ).grid(row=linha, column=0, padx=4, pady=2)
+    ctk.CTkLabel(
+        caixa_de_admins,
+        text=pessoa["CPF"],
+        width= 80,
+        height=30
+    ).grid(row=linha, column=1, padx=2, pady=2)
+    ctk.CTkLabel(
+        caixa_de_admins,
+        text=pessoa["Email"],
+        width= 120,
+        height=30
+    ).grid(row=linha, column=2, padx=2, pady=2)
+
+
+for col in range(len(cabecalho)):
+    caixa_de_admins.grid_columnconfigure(col, weight=1)
+
+#Combobox para selcioanar o administrador
+texto_box_admins= ctk.CTkLabel(tela_de_admins,text="Administradores",font=("Roboto", 14))
+texto_box_admins.place(relx=0.40, rely=0.64, relwidth=0.17, relheight=0.05)
+sucessoU, admins_box = carregar_Admins()
+if sucessoU:
+    box_admins = [f"{user["Nome"]}" for user in admins_box]
+    combobox_admins = ctk.CTkComboBox(
+        master= tela_de_admins,
+        values=box_admins,
+        width=200,
+        height=30,
+        dropdown_fg_color="#2b2b2b",
+        dropdown_hover_color="#3b3b3b",
+        button_color="#2E64FE",
+        state="readonly"
+    )
+    combobox_admins.place(relx=0.40, rely=0.70, relwidth=0.17, relheight=0.05)
+    
+else:
+    messagebox.showerror("ERRO", admins_box)
 
 #Tela de Usuários
 tela_de_usuarios= ctk.CTkFrame(screen)
@@ -453,6 +552,88 @@ if sucessoU:
     
 else:
     messagebox.showerror("ERRO", users_box)
+
+#Tela para remover os livros
+tela_de_livros = ctk.CTkFrame(screen)
+texto_telaLivros = ctk.CTkLabel(tela_de_livros, text= "Livros", font= ("Roboto",24))
+texto_telaLivros.pack(pady=20)
+voltar_livros_principal = ctk.CTkButton(tela_de_livros, text="Voltar", command= mostrar_tela_principal)
+voltar_livros_principal.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
+remover_livro = ctk.CTkButton(tela_de_livros, text= "Remover livro") #falta adiconar command
+remover_livro.place(relx=0.02, rely=0.9, relwidth=0.17, relheight=0.05)
+
+livros_remover = tabela_livros("books.json")
+cabecalho = ["Título", "Edição", "Genêro", "Autor", "Quantidade" ]
+ver_livros = ctk.CTkScrollableFrame(tela_de_livros, width=600, height=300)
+ver_livros.place(relx=0, rely=0.10, relwidth=1, relheight=0.5)
+
+for coluna, titulo in enumerate(cabecalho):
+    tabela_org = ctk.CTkLabel(
+        ver_livros,
+        text = titulo, 
+        font=("Arial", 14),
+        width=120,
+        height=30
+    )
+    tabela_org.grid(row=0, column=coluna, padx=5,pady=5)
+for linha, pessoa in enumerate(livros_remover, start=1):
+    ctk.CTkLabel(
+        ver_livros,
+        text=pessoa["Nome"],
+        wraplength=100,
+        width= 120,
+        height=30
+    ).grid(row=linha, column=0, padx=4, pady=2)
+    ctk.CTkLabel(
+        ver_livros,
+        text=pessoa["Edição"],
+        width= 80,
+        height=30
+    ).grid(row=linha, column=1, padx=2, pady=2)
+    ctk.CTkLabel(
+        ver_livros,
+        text=pessoa["Genero"],
+        width= 120,
+        height=30
+    ).grid(row=linha, column=2, padx=2, pady=2)
+    ctk.CTkLabel(
+        ver_livros,
+        text=pessoa["Autor(a)"],
+        wraplength=100,
+        width= 120,
+        height=30
+    ).grid(row=linha, column=3, padx=2, pady=2)
+    ctk.CTkLabel(
+        ver_livros,
+        text=pessoa["Quantidade"],
+        width= 120,
+        height=30
+    ).grid(row=linha, column=4, padx=2, pady=2)
+
+for col in range(len(cabecalho)):
+    ver_livros.grid_columnconfigure(col, weight=1)
+    
+#Combobox para selcioanar o livro
+texto_box_livros_remover= ctk.CTkLabel(tela_de_livros,text="Livros",font=("Roboto", 14))
+texto_box_livros_remover.place(relx=0.40, rely=0.64, relwidth=0.17, relheight=0.05)
+sucessoU, livros_box = carregar_Books()
+if sucessoU:
+    box_livros = [f"{user["Nome"]}" for user in livros_box]
+    combobox_livros = ctk.CTkComboBox(
+        master= tela_de_livros,
+        values=box_livros,
+        width=200,
+        height=30,
+        dropdown_fg_color="#2b2b2b",
+        dropdown_hover_color="#3b3b3b",
+        button_color="#2E64FE",
+        state="readonly"
+    )
+    combobox_livros.place(relx=0.40, rely=0.70, relwidth=0.17, relheight=0.05)
+    
+else:
+    messagebox.showerror("ERRO", livros_box)
+
 
 
 # fram 3: Tela de cadastro de ususários
