@@ -8,6 +8,7 @@ from tools.Alugar import Alugar
 from tools.Devolver import Devolver
 from PIL import Image, ImageTk
 from customtkinter import CTkImage
+from tools.Deletar import Deletar
 
 def combobox_callback(choice):
     print("combobox dropdown clicked:", choice)
@@ -234,6 +235,39 @@ def registrar_livro(event= None):
         messagebox.showinfo("SUCESSO", cadastroL)
     else:
         messagebox.showerror("ERRO NO CADASTRO", cadastroL)
+
+#função que deleta usuario
+def deletar_usuario():
+    nome_user = combobox_usuarios.get()
+
+    sucessoU_del, messageU = Deletar.deletar_usuario(nome_user)
+
+    if sucessoU_del:
+        messagebox.showinfo("SUCESSO", messageU)
+    else:
+        messagebox.showerror("ERRO AO DELETAR", messageU)
+
+# Função que deleta livro
+def deletar_livro():
+    nome_livro = combobox_livros.get()
+
+    sucessoL_del, messageL = Deletar.deletar_livro(nome_livro)
+
+    if sucessoL_del:
+        messagebox.showinfo("SUCESSO", messageL)
+    else:
+        messagebox.showerror("ERRO AO DELETAR", messageL)
+
+#Função que deleta admin
+def deletar_admin():
+    nome_admin = combobox_admins.get()
+
+    sucessoA_del, messageA = Deletar.deletar_admin(nome_admin)
+
+    if sucessoA_del:
+        messagebox.showinfo("SUCESSO", messageA)
+    else:
+        messagebox.showerror("ERRO AO DELETAR", messageA)
         
 # Função de alugar livro
 def alugar_livro():
@@ -402,7 +436,7 @@ admin = tabela_admin("admins.json")
 cabecalho = ["Nome", "CPF", "Email"]
 caixa_de_admins = ctk.CTkScrollableFrame(tela_de_admins, width=600, height=300)
 caixa_de_admins.place(relx=0, rely=0.10, relwidth=1, relheight=0.5)
-remover_admin = ctk.CTkButton(tela_de_admins, text= "Remover ADM")
+remover_admin = ctk.CTkButton(tela_de_admins, text= "Remover ADM", command=deletar_admin)
 remover_admin.place(relx=0.02, rely=0.9, relwidth=0.17, relheight=0.05)
 
 for coluna, titulo in enumerate(cabecalho):
@@ -465,7 +499,7 @@ tela_de_usuarios= ctk.CTkFrame(screen)
 texto_tela_usuarios = ctk.CTkLabel(tela_de_usuarios, text="Usuários Cadastrados", font= ("Roboto",24)).pack(pady=20)
 voltar_user_principal = ctk.CTkButton(tela_de_usuarios, text="Voltar", command= mostrar_tela_principal)
 voltar_user_principal.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
-remover_usuario = ctk.CTkButton(tela_de_usuarios, text= "Remover usuário")
+remover_usuario = ctk.CTkButton(tela_de_usuarios, text= "Remover usuário", command=deletar_usuario)
 remover_usuario.place(relx=0.02, rely=0.9, relwidth=0.17, relheight=0.05)
 cabecalho = ["Nome", "CPF", "Email", "Telefone", "Alugados", "Quantidade"]
 users = tabela_usuarios("users.json")
@@ -559,7 +593,7 @@ texto_telaLivros = ctk.CTkLabel(tela_de_livros, text= "Livros", font= ("Roboto",
 texto_telaLivros.pack(pady=20)
 voltar_livros_principal = ctk.CTkButton(tela_de_livros, text="Voltar", command= mostrar_tela_principal)
 voltar_livros_principal.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
-remover_livro = ctk.CTkButton(tela_de_livros, text= "Remover livro") #falta adiconar command
+remover_livro = ctk.CTkButton(tela_de_livros, text= "Remover livro", command=deletar_livro)
 remover_livro.place(relx=0.02, rely=0.9, relwidth=0.17, relheight=0.05)
 
 livros_remover = tabela_livros("books.json")
