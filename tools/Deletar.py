@@ -44,3 +44,34 @@ class Deletar:
                 return True, f"Administrador {nome_admin} foi deletado!"
         except Exception as e:
             return False, f"Erro ao salvar o arquivo!\nERROR: {e}"
+    
+
+    def deletar_livro(nome_livro):
+        dados_livros_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
+        dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
+
+        try:
+            with open(dados_users_json, "r", encoding="utf-8") as arquivo:
+                users = json.load(arquivo)
+        except Exception as e:
+            return False, f"ERRO: {e}"
+        
+        for user in users:
+            if nome_livro in user["livros alugados"]:
+                return False, f"O livro nãopode ser deletado pois a um ou mais usuarios com ele alugado"
+        
+        try:
+            with open(dados_livros_json, "r", encoding="utf-8") as arquivo:
+                livros = json.load(arquivo)
+        except Exception as e:
+            return False, f"ERRO: {e}"
+        
+        dados_atualizados_livros = [livro for livro in livros if livro["Nome"] != nome_livro]
+
+        try:
+            with open(dados_livros_json, "w", encoding="utf-8") as arquivo:
+                json.dump(dados_atualizados_livros, arquivo, indent=4)
+                return True, f"O livro {nome_livro} foi deletado!"
+        except Exception as e:
+            return False, f"Erro ao salvar o arquivo\nERRO: {e}"
+        
