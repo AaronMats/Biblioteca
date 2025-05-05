@@ -4,7 +4,12 @@ import os
 
 class Deletar:
     def deletar_usuario(nome_user):
-        dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
+        try:
+            if not nome_user.strip():
+                raise ValueError("Usuario não selecionado.")
+            dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
+        except ValueError as e:
+            return False, str(e)
 
         try:
             with open(dados_users_json, "r", encoding="utf-8") as arquivo:
@@ -33,7 +38,12 @@ class Deletar:
         
 
     def deletar_admin(nome_admin):
-        dados_admin_json = os.path.join(os.path.dirname(__file__), '../data', 'admins.json')
+        try:
+            if not nome_admin.strip():
+                raise ValueError("Administrador não selecionado.")
+            dados_admin_json = os.path.join(os.path.dirname(__file__), '../data', 'admins.json')
+        except ValueError as e:
+            return False, str(e)
 
         try:
             with open(dados_admin_json, "r", encoding="utf-8") as arquivo:
@@ -52,8 +62,13 @@ class Deletar:
     
 
     def deletar_livro(nome_livro):
-        dados_livros_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
-        dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
+        try:
+            if not nome_livro.strip():
+                raise ValueError("Livro não selecionado.")
+            dados_livros_json = os.path.join(os.path.dirname(__file__), '../data', 'books.json')
+            dados_users_json = os.path.join(os.path.dirname(__file__), '../data', 'users.json')
+        except ValueError as e:
+            return False, str(e)
 
         try:
             with open(dados_users_json, "r", encoding="utf-8") as arquivo:
