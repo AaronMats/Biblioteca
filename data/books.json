@@ -38,13 +38,5 @@
         "Edi\u00e7\u00e3o": "2",
         "Quantidade": 0,
         "Descri\u00e7\u00e3o": "A metamorfose (Die Verwandlung, em alem\u00e3o) \u00e9 uma novela escrita por Franz Kafka, publicada pela primeira vez em 1915. Nessa obra, Kafka descreve o caixeiro viajante Gregor Samsa, que abandona as suas vontades e desejos para sustentar a fam\u00edlia e pagar a d\u00edvida dos pais"
-    },
-    {
-        "Nome": "O Ceifador",
-        "Autor(a)": "Neal Shuterman",
-        "Genero": "Fic\u00e7\u00e3o Cient\u00edfica",
-        "Edi\u00e7\u00e3o": "1",
-        "Quantidade": 10,
-        "Descri\u00e7\u00e3o": "def tabela_admin(admin_json):\n    admin_json = os.path.join(os.path.dirname(__file__), '../data', 'admins.json')\n    try:\n        with open(admin_json, 'r', encoding='utf-8') as arquivo:\n            return json.load(arquivo)\n    except (FileExistsError, json.JSONDecodeError):\n        return[]"
     }
 ]

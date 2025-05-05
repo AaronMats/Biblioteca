@@ -238,7 +238,7 @@ def registrar_livro(event= None):
 
 #função que deleta usuario
 def deletar_usuario():
-    nome_user = combobox_usuarios.get()
+    nome_user = combobox_usuarios_del.get()
 
     sucessoU_del, messageU = Deletar.deletar_usuario(nome_user)
 
@@ -249,7 +249,7 @@ def deletar_usuario():
 
 # Função que deleta livro
 def deletar_livro():
-    nome_livro = combobox_livros.get()
+    nome_livro = combobox_livros_del.get()
 
     sucessoL_del, messageL = Deletar.deletar_livro(nome_livro)
 
@@ -499,7 +499,7 @@ tela_de_usuarios= ctk.CTkFrame(screen)
 texto_tela_usuarios = ctk.CTkLabel(tela_de_usuarios, text="Usuários Cadastrados", font= ("Roboto",24)).pack(pady=20)
 voltar_user_principal = ctk.CTkButton(tela_de_usuarios, text="Voltar", command= mostrar_tela_principal)
 voltar_user_principal.place(relx=0.88, rely=0.9, relwidth=0.10, relheight=0.05)
-remover_usuario = ctk.CTkButton(tela_de_usuarios, text= "Remover usuário", command=deletar_usuario)
+remover_usuario = ctk.CTkButton(tela_de_usuarios, text= "Remover usuários", command= deletar_usuario)
 remover_usuario.place(relx=0.02, rely=0.9, relwidth=0.17, relheight=0.05)
 cabecalho = ["Nome", "CPF", "Email", "Telefone", "Alugados", "Quantidade"]
 users = tabela_usuarios("users.json")
@@ -572,7 +572,7 @@ texto_box_usuarios.place(relx=0.40, rely=0.64, relwidth=0.17, relheight=0.05)
 sucessoU, users_box = carregar_Users()
 if sucessoU:
     box_usuarios = [f"{user["Nome"]}" for user in users_box]
-    combobox_usuarios = ctk.CTkComboBox(
+    combobox_usuarios_del = ctk.CTkComboBox(
         master= tela_de_usuarios,
         values=box_usuarios,
         width=200,
@@ -582,7 +582,7 @@ if sucessoU:
         button_color="#2E64FE",
         state="readonly"
     )
-    combobox_usuarios.place(relx=0.40, rely=0.70, relwidth=0.17, relheight=0.05)
+    combobox_usuarios_del.place(relx=0.40, rely=0.70, relwidth=0.17, relheight=0.05)
     
 else:
     messagebox.showerror("ERRO", users_box)
@@ -653,7 +653,7 @@ texto_box_livros_remover.place(relx=0.40, rely=0.64, relwidth=0.17, relheight=0.
 sucessoU, livros_box = carregar_Books()
 if sucessoU:
     box_livros = [f"{user["Nome"]}" for user in livros_box]
-    combobox_livros = ctk.CTkComboBox(
+    combobox_livros_del = ctk.CTkComboBox(
         master= tela_de_livros,
         values=box_livros,
         width=200,
@@ -663,7 +663,7 @@ if sucessoU:
         button_color="#2E64FE",
         state="readonly"
     )
-    combobox_livros.place(relx=0.40, rely=0.70, relwidth=0.17, relheight=0.05)
+    combobox_livros_del.place(relx=0.40, rely=0.70, relwidth=0.17, relheight=0.05)
     
 else:
     messagebox.showerror("ERRO", livros_box)

@@ -13,8 +13,13 @@ class Deletar:
             return False, f"Erro ao ler o arquivo!\nERROR: {e}"
         
         for user in users:
-            if len(user["livros alugados"]) > 0 :
-                return False, f"Usuário {nome_user} não pode ser deletado pois tem {len(user['livros_alugados'])} livro(s) alugado(s)"
+            if user["Nome"] == nome_user:
+                user_selecionado = user
+                if len(user_selecionado["livros alugados"]) > 0:
+                    return False, f"Usuário {nome_user} não pode ser deletado pois tem livro(s) alugado(s)"
+                break
+
+            
         
         
         dados_atualizados = [user for user in users if user["Nome"] != nome_user]
